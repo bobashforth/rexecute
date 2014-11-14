@@ -8,8 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Rexecute::VERSION
   spec.authors       = ["Bob Ashforth"]
   spec.email         = ["rashforth@marketo.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Rexecute is a complete framework for remote execution of complex tasks in a linux network.}
+  spec.description   = %q{Rexecute executes remote tasks with no client required on the target machine, and tracks all execution in its server
+.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
