@@ -2,7 +2,6 @@
 
 require 'socket'
 require 'logger'
-require 'json'
 
 require_relative 'remoteexecute'
 require_relative 'rexmessage'
