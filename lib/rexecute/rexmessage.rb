@@ -3,7 +3,6 @@
 # July 2014 Bob Ashforth, RelEng
 #
 
-require 'json'
 require 'yaml'
 require 'pp'
 require 'logger'
@@ -107,9 +106,9 @@ class RexMessage
     msg["message_type"] = "#{message_type}"
 
     if payload.nil?
-      ymsg = Marshal::dump(msg)
+      ymsg = YAML::dump(msg)
     else
-      ymsg = Marshal::dump(msg.merge( payload ))
+      ymsg = YAML::dump(msg.merge( payload ))
     end
 
     puts "ymsg: #{ymsg}"
@@ -121,7 +120,7 @@ class RexMessage
     msg = rex_get_message_raw( sock )
     @logger.info "rex_get_message, msg=\"#{msg}\""
 
-    return Marshal::load( msg )
+    return YAML::load( msg )
   end
 
   def rex_get_message_raw( sock )
