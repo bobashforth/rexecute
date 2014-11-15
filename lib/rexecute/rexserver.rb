@@ -143,9 +143,7 @@ class RexServer < RexMessage
 
     payload = Hash.new
     mandump = msg["manifest"]
-    #manifest = msg["manifest"]
     payload["manifest"] = "#{mandump}"
-    payload["manifest"] = manifest
     @logger.info( "rexserver, in set_manifest before sending message" )
 
     sessionid = msg["sessionid"]

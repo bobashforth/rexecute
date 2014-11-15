@@ -9,8 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Bob Ashforth"]
   spec.email         = ["rashforth@marketo.com"]
   spec.summary       = %q{Rexecute is a complete framework for remote execution of complex tasks in a linux network.}
-  spec.description   = %q{Rexecute executes remote tasks with no client required on the target machine, and tracks all execution in its server
-.}
+  spec.description   = %q{Rexecute executes remote tasks with no client required on the target machine, and tracks all execution in its server.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -20,5 +19,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.6"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rake", "~> 0"
 end
