@@ -63,10 +63,12 @@ class RexApi < RexMessage
 
 			manifest = RemoteExecute::RexManifest.new( manfile )
 			if not manifest.nil?
-				mandump = Marshal.dump( manifest )
+				#mandump = Marshal.dump( manifest )
 
 				payload = Hash.new
-				payload["manifest"] = "#{mandump}"
+				#payload["manifest"] = "#{mandump}"
+				# Try using actual object, which will be serialize as part of the msg
+				payload["manifest"] = manifest
 				puts "in rex_set_manifest, before rex_send_command"
 
 				status = rex_send_command( @server, sessionid, :set_manifest, payload )
