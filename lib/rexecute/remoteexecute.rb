@@ -7,7 +7,6 @@
 #
 require 'socket'                # Get sockets from stdlib
 require 'pp'
-require 'json'
 
 module RemoteExecute
 

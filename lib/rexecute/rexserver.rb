@@ -142,9 +142,9 @@ class RexServer < RexMessage
   def set_manifest( msg )
 
     payload = Hash.new
-    #mandump = msg["manifest"]
-    manifest = msg["manifest"]
-    #payload["manifest"] = "#{mandump}"
+    mandump = msg["manifest"]
+    #manifest = msg["manifest"]
+    payload["manifest"] = "#{mandump}"
     payload["manifest"] = manifest
     @logger.info( "rexserver, in set_manifest before sending message" )
 
