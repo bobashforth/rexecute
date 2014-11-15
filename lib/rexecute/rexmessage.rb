@@ -3,9 +3,9 @@
 # July 2014 Bob Ashforth, RelEng
 #
 
+require 'json'
 require 'pp'
 require 'logger'
-require 'yaml'
 
 class RexMessage
 
