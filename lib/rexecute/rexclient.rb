@@ -77,7 +77,7 @@ class RexClient < RexMessage
       if not msg["manifest"].nil?
         mandump = msg["manifest"]
         @manifest = Marshal.load( mandump )
-        #@manifest = msg["manifest"]
+        @manifest.dump
 
         if @manifest.nil?
           status = :failure

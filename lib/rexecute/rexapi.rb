@@ -1,6 +1,5 @@
 require 'securerandom'
 require 'socket'
-require 'yaml'
 
 require_relative 'rexmessage'
 require_relative 'remoteexecute'
@@ -67,8 +66,6 @@ class RexApi < RexMessage
 
 				payload = Hash.new
 				payload["manifest"] = "#{mandump}"
-				# Try using actual object, which will be serialize as part of the msg
-				#payload["manifest"] = manifest
 				puts "in rex_set_manifest, before rex_send_command"
 
 				status = rex_send_command( @server, sessionid, :set_manifest, payload )
