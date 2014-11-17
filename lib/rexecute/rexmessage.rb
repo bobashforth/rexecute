@@ -87,6 +87,7 @@ class RexMessage
 
   # Each message object is an array of hashes; the value of any given hash
   # can be a ruby object of arbitrary complexity.
+  # (No 'unwrap' method is provided because json.parse() suffices.)
   def rex_wrap_message( sessionid, message_type, payload=nil )
 
     puts message_type
@@ -106,13 +107,13 @@ class RexMessage
     msg["message_type"] = "#{message_type}"
 
     if payload.nil?
-      ymsg = YAML::dump(msg)
+      jmsg = msg.to_json
     else
-      ymsg = YAML::dump(msg.merge( payload ))
+      jmsg = msg.merge( payload ).to_json
     end
 
-    puts "ymsg: #{ymsg}"
-    return ymsg
+    puts "jmsg: #{jmsg}"
+    return jmsg
 
   end
 
@@ -120,7 +121,7 @@ class RexMessage
     msg = rex_get_message_raw( sock )
     @logger.info "rex_get_message, msg=\"#{msg}\""
 
-    return YAML::load( msg )
+    return JSON.parse( msg )
   end
 
   def rex_get_message_raw( sock )
