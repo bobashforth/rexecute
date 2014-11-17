@@ -76,7 +76,8 @@ class RexClient < RexMessage
       puts "RexClient, in :set_manifest case, msg = #{msg}"
       if not msg["manifest"].nil?
         mandump = msg["manifest"]
-        @manifest = Marshal.load( mandump )
+        #@manifest = Marshal.load( mandump )
+        @manifest = JSON.parse( mandump )
         @manifest.dump
 
         if @manifest.nil?

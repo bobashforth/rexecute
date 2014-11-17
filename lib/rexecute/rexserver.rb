@@ -15,7 +15,7 @@ class RexServer < RexMessage
     @logger = Logger.new( '/var/log/rex/rexserver.log' )
     @logger.level = Logger::WARN
     @logger.sev_threshold = Logger::INFO
-    @manifest = nil
+    @manlines = nil
 
     # This array lists uuids which have been provided to new RexTaskClient
     # instances. Any clients contacting us with a sessionid which is not
