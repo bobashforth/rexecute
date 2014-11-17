@@ -60,7 +60,7 @@ class RexApi < RexMessage
 
 		@command_mutex.synchronize do
 
-			manlines = RemoteExecute::Manifest.new(manfile)
+			manlines = RemoteExecute::RexManifest.new(manfile)
 			if not manifest.nil?
 				#mandump = Marshal.dump( manifest )
 				mandump = manifest.to_json
