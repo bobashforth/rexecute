@@ -4,6 +4,8 @@ require_relative 'remoteexecute'
 
 require 'optparse'
 require 'socket'
+require 'json'
+require 'yaml'
 
 class RexClient < RexMessage
 
@@ -77,7 +79,7 @@ class RexClient < RexMessage
       if not msg["manifest"].nil?
         mandump = msg["manifest"]
         #@manifest = Marshal.load( mandump )
-        @manifest = JSON.parse( mandump )
+        @manifest = YAML::load( mandump )
         @manifest.dump
 
         if @manifest.nil?
@@ -138,7 +140,7 @@ class RexClient < RexMessage
     retstatus = :success
     actions.each do |action|
       puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
-      pid = spawn( action.command )
+      pid = spawn( @manifest.manenv, action.command )
       puts "Spawned pid #{pid}."
       retpid, status = Process.waitpid2( pid )
       retstatus = status.exitstatus

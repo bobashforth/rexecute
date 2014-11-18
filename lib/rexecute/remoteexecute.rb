@@ -30,10 +30,12 @@ module RemoteExecute
 
 		attr_reader :manifestfile
 		attr_reader :manactions
+		attr_reader :manenv
 
 		def initialize( manfile )
 	    @manifestfile = manfile
-	    @manactions = []
+	    @manenv = {'USER' => 'mpauser', 'DATE' => '2014_11_16'}
+	    @manactions = Array.new
 
 
 		  # Use the original manifest format defined for mlm releases; fields are

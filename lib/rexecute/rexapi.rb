@@ -1,5 +1,7 @@
 require 'securerandom'
 require 'socket'
+require 'json'
+require 'yaml'
 
 require_relative 'rexmessage'
 require_relative 'remoteexecute'
@@ -63,7 +65,7 @@ class RexApi < RexMessage
 			manifest = RemoteExecute::RexManifest.new(manfile)
 			if not manifest.nil?
 				#mandump = Marshal.dump( manifest )
-				mandump = manifest.to_json
+				mandump = YAML::dump(manifest)
 
 				payload = Hash.new
 				payload["manifest"] = "#{mandump}"
