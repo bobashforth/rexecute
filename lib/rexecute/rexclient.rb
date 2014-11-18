@@ -6,6 +6,7 @@ require 'optparse'
 require 'socket'
 require 'json'
 require 'yaml'
+require 'pp'
 
 class RexClient < RexMessage
 
@@ -138,7 +139,9 @@ class RexClient < RexMessage
 
     actions = @manifest.manactions
     retstatus = :success
-    try
+
+    begin
+
       actions.each do |action|
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         pid = spawn( @manifest.manenv, action.command )
@@ -151,15 +154,14 @@ class RexClient < RexMessage
         else
           retstatus = :success
         end
-        #end
       end
+
     rescue => e
       pp e
       retstatus = :failure
     end
 
     return retstatus
-    
   end
 
 end
