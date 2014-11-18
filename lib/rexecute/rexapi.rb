@@ -67,6 +67,8 @@ class RexApi < RexMessage
 				#mandump = Marshal.dump( manifest )
 				mandump = YAML::dump(manifest)
 
+				pp mandump
+
 				payload = Hash.new
 				payload["manifest"] = "#{mandump}"
 				puts "in rex_set_manifest, before rex_send_command"

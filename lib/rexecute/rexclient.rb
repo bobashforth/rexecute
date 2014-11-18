@@ -80,7 +80,7 @@ class RexClient < RexMessage
         mandump = msg["manifest"]
         #@manifest = Marshal.load( mandump )
         @manifest = YAML::load( mandump )
-        @manifest.dump
+        #@manifest.dump
 
         if @manifest.nil?
           status = :failure
