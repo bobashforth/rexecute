@@ -138,19 +138,24 @@ class RexClient < RexMessage
 
     actions = @manifest.manactions
     retstatus = :success
-    actions.each do |action|
-      puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
-      pid = spawn( @manifest.manenv, action.command )
-      puts "Spawned pid #{pid}."
-      retpid, status = Process.waitpid2( pid )
-      retstatus = status.exitstatus
-      puts "Process #{pid} completed with status #{retstatus}"
-      if "#{retstatus}" != "#{action.success_status}"
-        break
-      else
-        retstatus = :success
+    try
+      actions.each do |action|
+        puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
+        pid = spawn( @manifest.manenv, action.command )
+        puts "Spawned pid #{pid}."
+        retpid, status = Process.waitpid2( pid )
+        retstatus = status.exitstatus
+        puts "Process #{pid} completed with status #{retstatus}"
+        if "#{retstatus}" != "#{action.success_status}"
+          break
+        else
+          retstatus = :success
+        end
+        #end
       end
-      #end
+    rescue => e
+      pp e
+      retstatus = :failure
     end
 
     return retstatus
