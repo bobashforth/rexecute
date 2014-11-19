@@ -144,9 +144,10 @@ class RexClient < RexMessage
 
       actions.each do |action|
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
+        puts "command to be executed is \"#{action.command}\""
         pid = spawn( @manifest.manenv, action.command )
         puts "Spawned pid #{pid}."
-        retpid, status = Process.waitpid2( pid )
+        retpid, status = waitpid2( pid )
         retstatus = status.exitstatus
         puts "Process #{pid} completed with status #{retstatus}"
         if "#{retstatus}" != "#{action.success_status}"
