@@ -7,6 +7,7 @@
 #
 require 'socket'                # Get sockets from stdlib
 require 'pp'
+require 'yaml'
 
 module RemoteExecute
 
@@ -85,14 +86,14 @@ module RemoteExecute
 		end
 
 		def dump
-			puts "\n\nManifest Dump:\n\n"
-			puts "Manifest file: #{@manifestfile}\n"
-			@manactions.each do |action|
-				puts "stepnum: #{action.stepnum}"
-				puts "label: #{action.label}"
-				puts "success_status: #{action.success_status}"
-				puts "command: #{action.command}"
-			end
+			dumparray = [{"manfile" => @manifestfile},
+				@manenv, @manactions]
+
+			pp dumparray
+
+			puts "\nManifest Array Dump:\n"
+			YAML::dump(dumparray)
+			puts "\n"
 		end
 	end
 end

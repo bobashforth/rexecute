@@ -67,7 +67,7 @@ class RexApi < RexMessage
 				#mandump = Marshal.dump( manifest )
 				mandump = YAML::dump(manifest)
 
-				pp mandump
+				manifest.dump
 
 				payload = Hash.new
 				payload["manifest"] = "#{mandump}"
