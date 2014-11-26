@@ -62,15 +62,20 @@ class RexApi < RexMessage
 
 		@command_mutex.synchronize do
 
-			manifest = RemoteExecute::RexManifest.new(manfile)
+			#manifest = RemoteExecute::RexManifest.new(manfile)
+			manifest = YAML::load_file(manfile)
+
+			pp manifest
+
 			if not manifest.nil?
 				#mandump = Marshal.dump( manifest )
 				mandump = YAML::dump(manifest)
 
-				manifest.dump
+				#manifest.dump
 
 				payload = Hash.new
 				payload["manifest"] = "#{mandump}"
+
 				puts "in rex_set_manifest, before rex_send_command"
 
 				status = rex_send_command( @server, sessionid, :set_manifest, payload )

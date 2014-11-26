@@ -33,9 +33,10 @@ module RemoteExecute
 		attr_reader :manactions
 		attr_reader :manenv
 
-		def initialize( manfile )
+		def old_initialize( manfile )
 	    @manifestfile = manfile
-	    @manenv = {'USER' => 'mpauser', 'DATE' => '2014_11_16'}
+	    #@manenv = {'USER' => 'mpauser', 'DATE' => '2014_11_16'}
+	    @manenv = nil
 	    @manactions = Array.new
 
 
@@ -83,6 +84,11 @@ module RemoteExecute
 
 			  i += 1
 			end
+
+			File.open( 'protomanifest.yaml', 'w' ) do |file|
+  			YAML.dump(self, file)
+			end
+
 		end
 
 		def dump
