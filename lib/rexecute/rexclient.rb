@@ -138,19 +138,36 @@ class RexClient < RexMessage
   def exec_resume( msg, startstep )
 
     actions = @manifest.manactions
-    retstatus = :success
+
+    if startstep.to_i <= actions.length.to_i
+      retstatus = :success
+    else
+      puts "Error, startstep #{startstep} is out of bounds"
+      return :failure
+    end
+
+    if @manifest.manenv.has_key?("EXEC_USER")
+      user = @manifest.manenv["EXEC_USER"]
+      prefix = "sudo -u #{user}"
+    else
+      prefix = ""
+    end
 
     begin
 
       actions.each do |action|
+        # Skip any prior steps to reach the startstep
+        next if action.stepnum.to_i < startstep.to_i
+        command = "#{prefix} #{action.command}"
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
-        puts "command to be executed is \"#{action.command}\""
-        pid = spawn(@manifest.manenv, action.command)
+        puts "command to be executed is \"#{command}\""
+        pid = spawn(@manifest.manenv, command)
         puts "Spawned pid #{pid}."
         retpid, status = Process.waitpid2( pid )
         retstatus = status.exitstatus
         puts "Returned pid is #{retpid}"
         puts "Process #{pid} completed with status #{retstatus}"
+        action.exec_status = retstatus
         if "#{retstatus}" != "#{action.success_status}"
           break
         else

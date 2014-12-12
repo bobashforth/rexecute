@@ -18,12 +18,14 @@ module RemoteExecute
   	attr_reader :label
   	attr_reader :command
   	attr_reader :success_status
+  	attr_accessor :exec_status
 
   	def initialize( stepnum, label, command, success_status )
   	  @stepnum = stepnum
   	  @label = label
   	  @command = command
   	  @success_status = success_status
+  	  @exec_status = nil
   	end
   end
 
@@ -35,8 +37,8 @@ module RemoteExecute
 
 		def old_initialize( manfile )
 	    @manifestfile = manfile
-	    #@manenv = {'USER' => 'mpauser', 'DATE' => '2014_11_16'}
-	    @manenv = nil
+	    #@manenv = {'USER' => 'mpauser', 'DATE' => '2014_12_14'}
+	    @manenv = Hash.new
 	    @manactions = Array.new
 
 
@@ -85,9 +87,9 @@ module RemoteExecute
 			  i += 1
 			end
 
-			File.open( 'protomanifest.yaml', 'w' ) do |file|
-  			YAML.dump(self, file)
-			end
+			#File.open( 'protomanifest.yaml', 'w' ) do |file|
+  		#	YAML.dump(self, file)
+			#end
 
 		end
 

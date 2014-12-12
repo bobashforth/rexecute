@@ -64,6 +64,9 @@ class RexApi < RexMessage
 
 			#manifest = RemoteExecute::RexManifest.new(manfile)
 			manifest = YAML::load_file(manfile)
+			File.open( 'protomanifest.yaml', 'w' ) do |file|
+  			YAML.dump(manifest, file)
+			end
 
 			pp manifest
 
