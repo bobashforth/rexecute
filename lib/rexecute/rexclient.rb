@@ -148,7 +148,7 @@ class RexClient < RexMessage
 
     if @manifest.manenv.has_key?("EXEC_USER")
       user = @manifest.manenv["EXEC_USER"]
-      prefix = "sudo -u #{user}"
+      prefix = "sudo su - #{user} -c "
     else
       prefix = ""
     end
@@ -158,16 +158,24 @@ class RexClient < RexMessage
       actions.each do |action|
         # Skip any prior steps to reach the startstep
         next if action.stepnum.to_i < startstep.to_i
-        command = "#{prefix} #{action.command}"
+        command = "#{prefix} '#{action.command}'"
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{command}\""
-        pid = spawn(@manifest.manenv, command)
-        puts "Spawned pid #{pid}."
-        retpid, status = Process.waitpid2( pid )
-        retstatus = status.exitstatus
-        puts "Returned pid is #{retpid}"
-        puts "Process #{pid} completed with status #{retstatus}"
-        action.exec_status = retstatus
+        puts "contents of manenv:"
+        pp @manifest.manenv
+        begin
+          pid = spawn(@manifest.manenv, command)
+          puts "Spawned pid #{pid}."
+          retpid, status = Process.waitpid2( pid )
+          retstatus = status.exitstatus
+          puts "Returned pid is #{retpid}"
+          puts "Process #{pid}, step #{action.stepnum} completed with status #{retstatus}"
+          action.exec_status = retstatus
+        rescue => e
+          puts "Encountered exception when spawning command, error follows:"
+          pp e
+        end
+
         if "#{retstatus}" != "#{action.success_status}"
           break
         else

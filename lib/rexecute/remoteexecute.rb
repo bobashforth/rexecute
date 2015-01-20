@@ -33,9 +33,9 @@ module RemoteExecute
 
 		attr_reader :manifestfile
 		attr_reader :manactions
-		attr_reader :manenv
+		attr_accessor :manenv
 
-		def old_initialize( manfile )
+		def manfile_initialize( manfile )
 	    @manifestfile = manfile
 	    #@manenv = {'USER' => 'mpauser', 'DATE' => '2014_12_14'}
 	    @manenv = Hash.new

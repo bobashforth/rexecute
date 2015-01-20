@@ -159,18 +159,18 @@ class RexServer < RexMessage
     return status 
   end
 
-  def exec_resume( sessionid, msg, startstep )
-    @logger.info( "rexserver, in exec_resume before sending message" )
-    actions = @manifest.actions
-    actions.each do |action|
-      @logger.info( "Executing step \"#{action.label}\"" )
-      Thread.new do
-        system( "#{action.command}" )
-      end
-    end
+  #def exec_resume( sessionid, msg, startstep )
+  #  @logger.info( "rexserver, in exec_resume before sending message" )
+  #  actions = @manifest.actions
+  #  actions.each do |action|
+  #    @logger.info( "Executing step \"#{action.label}\"" )
+  #    Thread.new do
+  #      system( "#{action.command}" )
+  #    end
+  #  end
 
-    return :success
-  end
+  #  return :success
+  #end
 
   def dispatch_command( msg )
 
