@@ -58,6 +58,9 @@ class RexClient < RexMessage
           end
           @task_status = status
         end
+        if $task_state == :completed
+          break
+        end
       }
     end
   end  
@@ -111,6 +114,8 @@ class RexClient < RexMessage
       startstep = msg["startstep"]
       status = exec_resume( msg, startstep )
       status = rex_send_status( @server, @sessionid, status )
+      @task_state = :completed
+      exit 0
 
     when :exec_abort
       puts "Received abort message, terminating client session"
