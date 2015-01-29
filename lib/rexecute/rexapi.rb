@@ -125,9 +125,12 @@ class RexApi < RexMessage
 			if status != :success
 				@logger.error( "Error, failed to send :rex_exec message")
 			else
+				# This request should block until the task completes
+				puts "Waiting for task completion status"
 				status = read_task_status( @server, sessionid )
 			end
 		end
+		rex_kill(sessionid)
 		return status
 	end
 
@@ -143,9 +146,12 @@ class RexApi < RexMessage
 			if status != :success
 				@logger.error( "Error, failed to send :rex_exec message")
 			else
+				# This request should block until the task completes
+				puts "Waiting for task completion status"
 				status = read_task_status( @server, sessionid )
 			end
 		end
+		rex_kill(sessionid)
 		return status
 	end
 

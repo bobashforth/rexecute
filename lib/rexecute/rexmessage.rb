@@ -131,26 +131,30 @@ class RexMessage
       #pp sid
       @logger.info( "In rex_get_message_raw, sock=#{sock}" )
 
-      begin
-        msg = sock.gets.chomp
-        @logger.info( msg )
-      rescue => e
-        @logger.error( "Error in getting message" )
-        @logger.error( e.message )
-        @logger.error( e.backtrace )
+      msg = sock.gets
+      if !msg.nil?
+        msg = msg.chomp
+        @logger.info(msg)
+      else
+        @logger.info("rex_get_message_raw: received nil message")
       end
 
     rescue => e
-      pp e
-      @logger.error( e )
-      @logger.info( "Client terminated" )
-    end
-
-    if msg.nil?
-      @logger.error( "Received nil message" )
+      @logger.error( "Error in getting message" )
+      @logger.error( e.message )
+      @logger.error( e.backtrace )
     end
 
     return msg
+  end
+
+  def reap_task( sock, conversationid )
+
+    rex_send_message( sock, conversationid, :reap_task )
+
+    status = read_task_status( sock, conversationid )
+    puts "In get_task_status, status is #{status}"
+    return status
   end
 
   def get_task_status( sock, conversationid )

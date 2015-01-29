@@ -58,7 +58,7 @@ class RexClient < RexMessage
           end
           @task_status = status
         end
-        if $task_state == :completed
+        if @task_state == :completed
           break
         end
       }
@@ -97,9 +97,6 @@ class RexClient < RexMessage
       else           
         status = rex_send_status( @server, @sessionid, :failure )
       end
-    when :get_task_state
-      puts "in case :get_task_state"
-      pp msg
 
     when :get_task_status
       rex_send_status( @server, @sessionid, @task_status )
@@ -115,7 +112,7 @@ class RexClient < RexMessage
       status = exec_resume( msg, startstep )
       status = rex_send_status( @server, @sessionid, status )
       @task_state = :completed
-      exit 0
+      #exit 0
 
     when :exec_abort
       puts "Received abort message, terminating client session"
@@ -144,9 +141,8 @@ class RexClient < RexMessage
 
     actions = @manifest.manactions
 
-    if startstep.to_i <= actions.length.to_i
-      retstatus = :success
-    else
+    retstatus = :success
+    if startstep.to_i > actions.length.to_i
       puts "Error, startstep #{startstep} is out of bounds"
       return :failure
     end
@@ -182,6 +178,7 @@ class RexClient < RexMessage
         end
 
         if "#{retstatus}" != "#{action.success_status}"
+          retstatus = :failure
           break
         else
           retstatus = :success
@@ -193,6 +190,7 @@ class RexClient < RexMessage
       retstatus = :failure
     end
 
+    puts "Returning from exec_resume"
     return retstatus
   end
 
