@@ -194,7 +194,7 @@ class RexServer < RexMessage
     when :exec_start
       puts "in :exec_start case, msg = #{msg}"
       status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_start )
-      status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
+      #status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
 
     when :exec_resume
       puts "in :exec_resume case, msg = #{msg}"
@@ -202,7 +202,7 @@ class RexServer < RexMessage
       payload = Hash.new
       payload["startstep"] = "#{startstep}"
       status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_resume, payload )
-      status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
+      #status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
 
     when :exec_abort
       status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_abort )
