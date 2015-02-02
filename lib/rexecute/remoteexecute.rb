@@ -97,7 +97,7 @@ module RemoteExecute
 			dumparray = [{"manfile" => @manifestfile},
 				@manenv, @manactions]
 
-			pp dumparray
+			#pp dumparray
 
 			puts "\nManifest Array Dump:\n"
 			YAML::dump(dumparray)

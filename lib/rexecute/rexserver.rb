@@ -243,8 +243,5 @@ class RexServer < RexMessage
   end
 end
  
-#server = RexServer.new( RexSettings::SERVERPORT )
-#if server.nil?
-#  @logger.fatal( "Error instantiating RexServer" )
-#end
+
 

@@ -65,13 +65,13 @@ class RexApi < RexMessage
 			#manifest = RemoteExecute::RexManifest.new(manfile)
 			manifest = YAML::load_file(manfile)
 			puts "Loaded manfile #{manfile}, manenv content follows"
-			pp manifest.manenv
+			#pp manifest.manenv
 
 			t = Time.now()
 			manifest.manenv['EXEC_DATE'] = t.strftime("%Y%m%d_%H%M%S")
 			puts "EXEC_DATE = #{manifest.manenv}"
-			puts "Inserted EXEC_DATE value, manenv content follows"
-			pp manifest.manenv
+			#puts "Inserted EXEC_DATE value, manenv content follows"
+			#pp manifest.manenv
 
 			File.open( 'protomanifest.yaml', 'w' ) do |file|
   			YAML.dump(manifest, file)

@@ -63,7 +63,7 @@ class RexMessage
     status = :success
     begin
       sock.puts( rex_message )
-      @logger.info( rex_message )
+      #@logger.info( rex_message )
       puts "rex_send_raw: message sent, #{rex_message}"
     rescue => e
       pp e
@@ -119,7 +119,7 @@ class RexMessage
 
   def rex_get_message( sock )
     msg = rex_get_message_raw( sock )
-    @logger.info "rex_get_message, msg=\"#{msg}\""
+    #@logger.info "rex_get_message, msg=\"#{msg}\""
 
     return JSON.parse( msg )
   end
@@ -134,7 +134,7 @@ class RexMessage
       msg = sock.gets
       if !msg.nil?
         msg = msg.chomp
-        @logger.info(msg)
+        #@logger.info(msg)
       else
         @logger.info("rex_get_message_raw: received nil message")
       end
