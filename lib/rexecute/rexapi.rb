@@ -122,10 +122,18 @@ class RexApi < RexMessage
 
 		@command_mutex.synchronize do
 			status = rex_send_command( @server, sessionid, :exec_start )
-			if status != :success
-				@logger.error( "Error, failed to send :rex_exec message")
-			end
-		end
+			#if status != :success
+				#@logger.error( "Error, failed to send :rex_exec message")
+			#else
+				# This request would block until the task completes; the
+				# check for completion status is now done separately, to
+				# permit asynchronous triggering of a remote command.
+				#puts "Waiting for task completion status"
+				#status = read_task_status( @server, sessionid )
+			#end
+		#end
+		# No longer killing the session; this will be done on task completion
+		#rex_kill(sessionid)
 		return status
 	end
 
@@ -144,10 +152,16 @@ class RexApi < RexMessage
 			payload = Hash.new
 			payload["startstep"] = "#{stepnum}"
 			status = rex_send_command( @server, sessionid, :exec_resume, payload )
-			if status != :success
-				@logger.error( "Error, failed to send :rex_exec message")
-			end
+			# See above comment on asynchronous execution
+			#if status != :success
+			#	@logger.error( "Error, failed to send :rex_exec message")
+			#else
+				# This request should block until the task completes
+			#	puts "Waiting for task completion status"
+			#	status = read_task_status( @server, sessionid )
+			#end
 		end
+		#rex_kill(sessionid)
 		return status
 	end
 

@@ -20,7 +20,7 @@ class RexClient < RexMessage
     @logger.level = Logger::INFO
     @server = TCPSocket.new( serverhost, port )
     @task_state = :init
-    @task_status = :success
+    @task_status = :nil
 
     @manifest = nil
     @taskname = nil
@@ -104,12 +104,13 @@ class RexClient < RexMessage
     when :exec_start
       puts "in case :exec_start"
       status = exec_start( msg )
-      status = rex_send_status( @server, @sessionid, status )
+      status = rex_send_status( @server, @sessionid, @status )
+      @task_state = :running
 
     when :exec_resume
       puts "in case :exec_resume"
       startstep = msg["startstep"]
-      status = exec_resume( msg, startstep )
+      @status = exec_resume( msg, startstep )
       status = rex_send_status( @server, @sessionid, status )
       @task_state = :completed
       #exit 0
@@ -133,7 +134,7 @@ class RexClient < RexMessage
 
   def exec_start( msg )
     startstep = 1
-    status = exec_resume( msg, startstep )
+    @status = exec_resume( msg, startstep )
     return status
   end
 
