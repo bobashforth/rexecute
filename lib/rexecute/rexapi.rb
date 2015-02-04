@@ -116,24 +116,9 @@ class RexApi < RexMessage
 	end
 
 	def rex_start( sessionid )
-		puts "In rex_start, sessionid=#{sessionid}"
 
-		status = nil
-
-		@command_mutex.synchronize do
-			status = rex_send_command( @server, sessionid, :exec_start )
-			if status != :success
-				@logger.error( "Error, failed to send :exec_start message")
-			else
-				# This request blocks until the task completes; the entire
-				# start command and status fetch is now wrapped in a spawned
-				# process, to permit asynchronous triggering of a remote command.
-				puts "Waiting for task completion status"
-				status = read_task_status( @server, sessionid )
-			end
-		end
-		# Kill the session on task completion
-		rex_kill(sessionid)
+		# Just call the rex_resume method
+		status = rex_resume(sessionid, 1)
 		return status
 	end
 
@@ -157,12 +142,10 @@ class RexApi < RexMessage
 			if status != :success
 				@logger.error( "Error, failed to send :rex_exec message")
 			else
-				# This request blocks until the task completes
-				puts "Waiting for task completion status"
+				# This is just the status of sending the start command
 				status = read_task_status( @server, sessionid )
 			end
 		end
-		rex_kill(sessionid)
 		return status
 	end
 
