@@ -18,7 +18,7 @@ optparse = OptionParser.new do |opts|
   end
 
   opts.on( '-h HOST', '--host HOST', 'host HOST' ) do |value|
-    options[:sessionid] = value
+    options[:host] = value
   end
 
   opts.on( '-t TASKNAME', '--taskname TASKNAME', 'taskname TASKNAME' ) do |value|
