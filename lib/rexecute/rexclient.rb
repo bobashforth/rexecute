@@ -109,9 +109,6 @@ class RexClient < RexMessage
     when :exec_start
       puts "in case :exec_start"
 
-      # Tell the controller that we've started the task
-      status = rex_send_status( @server, @sessionid, :success )
-
       @exec_mutex.synchronize do
         status = exec_resume(msg, 1)
       end
@@ -121,9 +118,6 @@ class RexClient < RexMessage
     when :exec_resume
       puts "in case :exec_resume"
       startstep = msg["startstep"]
-
-      # Tell the controller that we've started the task
-      status = rex_send_status( @server, @sessionid, :success )
 
       @exec_mutex.synchronize do
         @task_status = exec_resume( msg, startstep )
