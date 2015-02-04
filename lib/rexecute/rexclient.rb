@@ -134,7 +134,7 @@ class RexClient < RexMessage
 
   def exec_start( msg )
     startstep = 1
-    @status = exec_resume( msg, startstep )
+    status = exec_resume( msg, startstep )
     return status
   end
 
