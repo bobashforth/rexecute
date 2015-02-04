@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 #
-require_relative '../lib/rexecute/rexapi'
+require 'rexecute'
 
 require 'optparse'
+
+include RexApi
 
 # Hash for options passed in
 options = {}
@@ -56,6 +58,7 @@ end
 
 status = :success
 
+puts "Setting manifest to #{execfile}"
 status = maestro.rex_set_manifest(sessionid, execfile )
 
 if status != :success
