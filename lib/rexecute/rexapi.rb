@@ -119,6 +119,13 @@ class RexApi < RexMessage
 
 		# Just call the rex_resume method
 		status = rex_resume(sessionid, 1)
+
+		if status != :success
+			@logger.error( "Error, failed to send :rex_exec message")
+		else
+			status = read_task_status( @server, sessionid )
+		end
+		
 		return status
 	end
 
@@ -144,6 +151,8 @@ class RexApi < RexMessage
 
 			if status != :success
 				@logger.error( "Error, failed to send :rex_exec message")
+			else
+				status = read_task_status( @server, sessionid )
 			end
 		end
 		return status

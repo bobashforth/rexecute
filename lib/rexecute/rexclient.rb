@@ -90,10 +90,10 @@ class RexClient < RexMessage
         #@manifest.dump
 
         if @manifest.nil?
-          status = :failure
+          @task_status = :failure
           puts "RexClient: set_manifest failed"
         else
-          status = :success
+          @task_status = :success
           puts "RexClient: set_manifest succeeded"
         end
         status = rex_send_status( @server, @sessionid, "#{status}" )
@@ -108,7 +108,8 @@ class RexClient < RexMessage
 
     when :exec_start
       puts "in case :exec_start"
-
+      @task_status = :success
+      
       @exec_mutex.synchronize do
         status = exec_resume(msg, 1)
       end
@@ -118,6 +119,7 @@ class RexClient < RexMessage
     when :exec_resume
       puts "in case :exec_resume"
       startstep = msg["startstep"]
+      @task_status = :success
 
       @exec_mutex.synchronize do
         @task_status = exec_resume( msg, startstep )
