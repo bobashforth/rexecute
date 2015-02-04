@@ -1,10 +1,8 @@
 #!/usr/bin/env ruby
 #
-require 'rexecute'
+require_relative '../lib/rexecute/rexapi'
 
 require 'optparse'
-
-include RexApi
 
 # Hash for options passed in
 options = {}
@@ -28,7 +26,7 @@ optparse = OptionParser.new do |opts|
   end
 
   opts.on( '-e EXECFILE', '--execfile EXECFILE', 'execfile EXECFILE' ) do |value|
-    options[:taskname] = value
+    options[:execfile] = value
   end
 
 end
