@@ -25,8 +25,7 @@ class RexClient < RexMessage
     @manifest = nil
     @taskname = taskname
 
-    # This mutex is used to block return of status until command execution is complete
-    @exec_mutex = Mutex.new
+     @execthread = nil
 
     listen
     @response.join
@@ -102,30 +101,32 @@ class RexClient < RexMessage
       end
 
     when :get_task_status
-      @exec_mutex.synchronize do
-        rex_send_status( @server, @sessionid, @task_status )
+      # If the execution thread is running, we block until it is completed.
+      if !@execthread.nil?
+        @execthread.join
+        @task_state = :completed
       end
+      
+      rex_send_status( @server, @sessionid, @task_status )
 
     when :exec_start
       puts "in case :exec_start"
       @task_status = :success
-      
-      @exec_mutex.synchronize do
-        status = exec_resume(msg, 1)
+      @task_state = :running
+
+      @execthread = Thread.new do
+        @task_status = exec_resume(msg, 1)
       end
 
-      @task_state = :running
 
     when :exec_resume
       puts "in case :exec_resume"
       startstep = msg["startstep"]
-      @task_status = :success
+      status = exec_resume(msg, 1)
 
-      @exec_mutex.synchronize do
+      @execthread = Thread.new do
         @task_status = exec_resume( msg, startstep )
       end
-
-      @task_state = :completed
 
     when :exec_abort
       puts "Received abort message, terminating client session"
@@ -141,12 +142,6 @@ class RexClient < RexMessage
 
     end
 
-    return status
-  end
-
-  def exec_start( msg )
-    startstep = 1
-    status = exec_resume( msg, startstep )
     return status
   end
 

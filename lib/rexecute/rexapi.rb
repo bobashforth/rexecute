@@ -145,8 +145,8 @@ class RexApi < RexMessage
 
 			if status != :success
 				@logger.error( "Error, failed to send :rex_exec message")
-			else
-				status = read_task_status( @server, sessionid )
+			#else
+			#	status = read_task_status( @server, sessionid )
 			end
 		end
 		return status
