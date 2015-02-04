@@ -125,8 +125,9 @@ class RexApi < RexMessage
 
 	def rex_task_wait
 		puts "Waiting for task completion status"
-		status = read_task_status(@server, @conversationid)
-		#rex_kill(@conversationid)
+		#status = read_task_status(@server, @conversationid)
+		status = get_task_status(@server, @conversationid)
+
 		return status
 	end
 
