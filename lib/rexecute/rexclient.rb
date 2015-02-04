@@ -19,11 +19,11 @@ class RexClient < RexMessage
     @logger.sev_threshold = Logger::INFO
     @logger.level = Logger::INFO
     @server = TCPSocket.new( serverhost, port )
-    @task_state = :init
-    @task_status = :nil
+    @task_state = nil
+    @task_status = nil
 
     @manifest = nil
-    @taskname = nil
+    @taskname = taskname
 
     listen
     @response.join
@@ -103,15 +103,15 @@ class RexClient < RexMessage
 
     when :exec_start
       puts "in case :exec_start"
-      status = exec_start( msg )
-      status = rex_send_status( @server, @sessionid, @status )
+      status = exec_resume(msg, 1)
+      status = rex_send_status( @server, @sessionid, @task_status )
       @task_state = :running
 
     when :exec_resume
       puts "in case :exec_resume"
       startstep = msg["startstep"]
-      @status = exec_resume( msg, startstep )
-      status = rex_send_status( @server, @sessionid, status )
+      @task_status = exec_resume( msg, startstep )
+      status = rex_send_status( @server, @sessionid, @task_status )
       @task_state = :completed
       #exit 0
 
@@ -193,7 +193,7 @@ class RexClient < RexMessage
 
     puts "Returning from exec_resume"
     return retstatus
-  end
 
+  end
 end
 
