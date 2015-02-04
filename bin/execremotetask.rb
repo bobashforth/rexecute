@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 #
+require_relative '../lib/rexecute/rexapi'
+
 require 'optparse'
 
 # Hash for options passed in
@@ -39,7 +41,7 @@ execfile = options[:execfile]
 puts "Starting remote execution of task #{taskname} on server #{host}"
 
 # Get a REX API object and trigger the manifest execution
-maestro = RexApi.new(controller)
+maestro = RexApi.new("#{controller}")
 
 puts "API created, calling rex_init"
 
@@ -63,7 +65,7 @@ end
 
 puts "Manifest for client set to #{execfile}, executing task"
 
-status = maestro.rex_start( @clientsid )
+status = maestro.rex_start(sessionid)
 if status == :success
   puts "Workflow execution initiated"
 else
