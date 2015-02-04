@@ -137,13 +137,13 @@ class RexApi < RexMessage
 		@command_mutex.synchronize do
 			payload = Hash.new
 			payload["startstep"] = "#{stepnum}"
+
+			# This is just the status of sending the command. Execution status
+			# is fetched separately.
 			status = rex_send_command( @server, sessionid, :exec_resume, payload )
-			# See above comment on asynchronous execution
+
 			if status != :success
 				@logger.error( "Error, failed to send :rex_exec message")
-			else
-				# This is just the status of sending the start command
-				status = read_task_status( @server, sessionid )
 			end
 		end
 		return status
