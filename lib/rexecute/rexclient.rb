@@ -121,9 +121,10 @@ class RexClient < RexMessage
 
     when :exec_resume
       puts "in case :exec_resume"
+      @task_status = :success
+      @task_state = :running
       startstep = msg["startstep"]
-      status = exec_resume(msg, 1)
-
+      
       @execthread = Thread.new do
         @task_status = exec_resume( msg, startstep )
       end
