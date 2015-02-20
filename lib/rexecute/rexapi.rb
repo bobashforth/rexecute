@@ -63,8 +63,8 @@ class RexApi < RexMessage
 		@command_mutex.synchronize do
 
 			#manifest = RemoteExecute::RexManifest.new(manfile)
-			manifest = YAML::load_file(manfile)
-			puts "Loaded manfile #{manfile}, manenv content follows"
+			manifest = YAML::load_file("lib/#{manfile}")
+			puts "Loaded manfile lib/#{manfile}, manenv content follows"
 			#pp manifest.manenv
 
 			t = Time.now()
