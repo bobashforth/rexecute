@@ -64,43 +64,29 @@ class RexApi < RexMessage
 
 			#manifest = RemoteExecute::RexManifest.new(manfile)
 			manifest = YAML::load_file("lib/#{manfile}")
-			puts "Loaded manfile lib/#{manfile}, manenv content follows"
-			#pp manifest.manenv
+			if manifest.nil?
+ 				@logger.error( "Error, manifest object could not be created")
+  			status = :failure
+  		else
+				puts "Loaded manfile lib/#{manfile}, manenv content follows"
+				#pp manifest.manenv
 
-			t = Time.now()
-			manifest.manenv['EXEC_DATE'] = t.strftime("%Y%m%d_%H%M%S")
-			puts "EXEC_DATE = #{manifest.manenv}"
-			#puts "Inserted EXEC_DATE value, manenv content follows"
-			#pp manifest.manenv
+				t = Time.now()
+				manifest.manenv['EXEC_DATE'] = t.strftime("%Y%m%d_%H%M%S")
+				puts "EXEC_DATE = #{manifest.manenv['EXEC_DATE']}"
+				#puts "Inserted EXEC_DATE value, manenv content follows"
+				#pp manifest.manenv
 
-			#File.open( 'protomanifest.yaml', 'w' ) do |file|
-  		#	YAML.dump(manifest, file)
-			#end
+				if !execenv.nil?
+					pp execenv
+					manifest.manenv = execenv.merge(manifest.manenv)
+				end
 
-			manenv = nil
-			if not manifest.nil?
-				#mandump = Marshal.dump( manifest )
+				File.open( 'protomanifest.yaml', 'w' ) do |file|
+  				YAML.dump(manifest, file)
+				end
+
 				mandump = YAML::dump(manifest)
-
-				# We need to merge execenv with manenv
-				if !mandump['manenv'].nil?
-					manenv = mandump['manenv']
-				end
-
-				if manenv.nil?
-					if !execenv.nil?
-						manenv = execenv
-					else
-						manenv = nil
-					end
-				else
-					if !execenv.nil?
-						manenv = execenv.merge(manenv)
-					end
-				end
-				mandump['manenv'] = manenv
-
-				#manifest.dump
 
 				payload = Hash.new
 				payload["manifest"] = "#{mandump}"
@@ -114,19 +100,16 @@ class RexApi < RexMessage
   			else
     			puts "Failed to send command to set manifest to #{manfile}"
   			end
+  		end
 
-				puts "Returned from read_task_status, status = #{status}"
-  			if status == :success
-    			puts "Manifest is set to #{manfile}"
-  			else
-    			puts "Failed to set manifest to #{manfile}"
-  			end
+			puts "Returned from read_task_status, status = #{status}"
+  		if status == :success
+    		puts "Manifest is set to #{manfile}"
   		else
-  			@logger.error( "Error, manifest object could not be created")
-  			status = :failure
-			end
-
+    		puts "Failed to set manifest to #{manfile}"
+  		end
 		end
+
 		puts "in rex_set_manifest, after rex_send_command"
 
 		return status

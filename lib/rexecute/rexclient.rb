@@ -172,7 +172,7 @@ class RexClient < RexMessage
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{command}\""
         puts "contents of manenv:"
-        #pp @manifest.manenv
+        pp @manifest.manenv
         begin
           pid = spawn(@manifest.manenv, command)
           puts "Spawned pid #{pid}."

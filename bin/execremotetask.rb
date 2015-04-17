@@ -48,6 +48,14 @@ if host.nil? || taskname.nil? || execfile.nil?
   abort "Error, must supply host, taskname, and execfile"
 end
 
+execenv = nil
+
+# If execargs were passed, load them into a hash
+if !execargs.nil?
+  #execenv = Marshal.load(execargs)
+  execenv = YAML::load(execargs)
+end
+
 puts "Starting remote execution of task #{taskname} on server #{host}"
 
 # Get a REX API object and trigger the manifest execution
@@ -67,7 +75,7 @@ end
 status = :success
 
 puts "Setting manifest to #{execfile}"
-status = maestro.rex_set_manifest(sessionid, execfile )
+status = maestro.rex_set_manifest(sessionid, execfile, execenv)
 
 if status != :success
   puts "Failed to set manifest for client to #{manifestfile}"
