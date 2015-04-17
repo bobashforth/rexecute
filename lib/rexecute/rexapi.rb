@@ -56,7 +56,7 @@ class RexApi < RexMessage
 		return return_sid
 	end
 
-	def rex_set_manifest( sessionid, manfile )
+	def rex_set_manifest( sessionid, manfile, execenv=nil )
 
 		status = nil
 
@@ -73,9 +73,9 @@ class RexApi < RexMessage
 			#puts "Inserted EXEC_DATE value, manenv content follows"
 			#pp manifest.manenv
 
-			File.open( 'protomanifest.yaml', 'w' ) do |file|
-  			YAML.dump(manifest, file)
-			end
+			#File.open( 'protomanifest.yaml', 'w' ) do |file|
+  		#	YAML.dump(manifest, file)
+			#end
 
 			#pp manifest
 
@@ -83,10 +83,34 @@ class RexApi < RexMessage
 				#mandump = Marshal.dump( manifest )
 				mandump = YAML::dump(manifest)
 
+				# We need to merge execenv with manenv
+				if !mandump['manenv'].nil?
+					manenv = mandump['manenv']
+				else
+					manenv = nil
+				end
+
+				if manenv.nil?
+					if !execenv.nil?
+						manenv = execenv
+					else
+						manenv = nil
+					end
+				else
+					if !execenv.nil?
+						manenv = execenv.merge(manenv)
+					end
+				end
+				mandump['manenv'] = manenv
+
 				#manifest.dump
 
 				payload = Hash.new
 				payload["manifest"] = "#{mandump}"
+
+				# If a hash of env values was passed in, merge 
+				if !execenv.nil?
+
 
 				puts "in rex_set_manifest, before rex_send_command"
 

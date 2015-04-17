@@ -3,6 +3,7 @@
 require_relative '../lib/rexecute/rexapi'
 
 require 'optparse'
+require 'YAML'
 
 # Hash for options passed in
 options = {}
@@ -29,6 +30,10 @@ optparse = OptionParser.new do |opts|
     options[:execfile] = value
   end
 
+  opts.on( '-x EXECARGS', '--execargs EXECARGS', 'execargs EXECARGS' ) do |value|
+    options[:execargs] = value
+  end
+
 end
 
 optparse.parse!
@@ -37,6 +42,7 @@ controller = options[:controller]
 host = options[:host]
 taskname = options[:taskname]
 execfile = options[:execfile]
+execargs = options[:execargs]
 
 puts "Starting remote execution of task #{taskname} on server #{host}"
 
