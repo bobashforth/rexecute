@@ -56,8 +56,9 @@ class RexApi < RexMessage
 		return return_sid
 	end
 
-	def rex_set_manifest( sessionid, manfile, execenv=nil )
+	def rex_set_manifest( sessionid, manfile, execenvdump=nil )
 
+		puts "In rex_set_manifest, sessionid=#{sessionid}, manfile=#{manfile}"
 		status = nil
 
 		@command_mutex.synchronize do
@@ -77,7 +78,9 @@ class RexApi < RexMessage
 				#puts "Inserted EXEC_DATE value, manenv content follows"
 				#pp manifest.manenv
 
-				if !execenv.nil?
+				if !execenv_dump.nil?
+					pp execenv_dump
+					execenv = YAML::load("#{execenv_dump}")
 					pp execenv
 					manifest.manenv = execenv.merge(manifest.manenv)
 				end
