@@ -77,8 +77,7 @@ class RexApi < RexMessage
   		#	YAML.dump(manifest, file)
 			#end
 
-			#pp manifest
-
+			manenv = nil
 			if not manifest.nil?
 				#mandump = Marshal.dump( manifest )
 				mandump = YAML::dump(manifest)
@@ -86,8 +85,6 @@ class RexApi < RexMessage
 				# We need to merge execenv with manenv
 				if !mandump['manenv'].nil?
 					manenv = mandump['manenv']
-				else
-					manenv = nil
 				end
 
 				if manenv.nil?
@@ -107,10 +104,6 @@ class RexApi < RexMessage
 
 				payload = Hash.new
 				payload["manifest"] = "#{mandump}"
-
-				# If a hash of env values was passed in, merge 
-				if !execenv.nil?
-
 
 				puts "in rex_set_manifest, before rex_send_command"
 
