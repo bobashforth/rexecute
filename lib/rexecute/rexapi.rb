@@ -56,9 +56,10 @@ class RexApi < RexMessage
 		return return_sid
 	end
 
-	def rex_set_manifest( sessionid, manfile, execenvdump=nil )
+	def rex_set_manifest( sessionid, manfile, flowenv_dump=nil )
 
 		puts "In rex_set_manifest, sessionid=#{sessionid}, manfile=#{manfile}"
+		puts "flowenv_dump=#{flowenv_dump}"
 		status = nil
 
 		@command_mutex.synchronize do
@@ -78,11 +79,10 @@ class RexApi < RexMessage
 				#puts "Inserted EXEC_DATE value, manenv content follows"
 				#pp manifest.manenv
 
-				if !execenv_dump.nil?
-					pp execenv_dump
-					execenv = YAML::load("#{execenv_dump}")
-					pp execenv
-					manifest.manenv = execenv.merge(manifest.manenv)
+				if !flowenv_dump.nil?
+					flowenv = YAML::load(flowenv_dump)
+					pp flowenv
+					manifest.manenv = flowenv.merge(manifest.manenv)
 				end
 
 				File.open( 'protomanifest.yaml', 'w' ) do |file|
@@ -103,7 +103,7 @@ class RexApi < RexMessage
   			else
     			puts "Failed to send command to set manifest to #{manfile}"
   			end
-  		end
+			end
 
 			puts "Returned from read_task_status, status = #{status}"
   		if status == :success
