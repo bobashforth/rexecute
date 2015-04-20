@@ -31,6 +31,7 @@ optparse = OptionParser.new do |opts|
   end
 
   opts.on( '-x EXECARGS', '--execargs EXECARGS', 'execargs EXECARGS' ) do |value|
+    pp value
     options[:execargs] = value
   end
 

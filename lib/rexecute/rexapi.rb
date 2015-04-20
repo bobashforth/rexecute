@@ -80,9 +80,22 @@ class RexApi < RexMessage
 				#pp manifest.manenv
 
 				if !flowenv_dump.nil?
-					flowenv = YAML::load(flowenv_dump)
-					pp flowenv
-					manifest.manenv = flowenv.merge(manifest.manenv)
+
+					begin
+						#flowenv = YAML::load(flowenv_dump)
+						flowenv_dump = flowenv_dump.gsub(/[()]/, "")
+						flowenv = YAML::load(flowenv_dump)
+					rescue => e
+						pp e
+					end
+
+					if flowenv.nil?
+						puts 'Error, flowenv object could not be created'
+						status = :failure
+					else
+						pp flowenv
+						manifest.manenv = flowenv.merge(manifest.manenv)
+					end
 				end
 
 				File.open( 'protomanifest.yaml', 'w' ) do |file|
