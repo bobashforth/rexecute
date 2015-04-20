@@ -82,9 +82,9 @@ class RexApi < RexMessage
 				if !flowenv_dump.nil?
 
 					begin
+						flowenv = JSON::load(flowenv_dump)
+						#flowenv_dump = flowenv_dump.gsub(/[()]/, "")
 						#flowenv = YAML::load(flowenv_dump)
-						flowenv_dump = flowenv_dump.gsub(/[()]/, "")
-						flowenv = YAML::load(flowenv_dump)
 					rescue => e
 						pp e
 					end
