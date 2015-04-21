@@ -56,10 +56,10 @@ class RexApi < RexMessage
 		return return_sid
 	end
 
-	def rex_set_manifest( sessionid, manfile, flowenv_args=nil )
+	def rex_set_manifest( sessionid, manfile, flowargs=nil )
 
 		puts "In rex_set_manifest, sessionid=#{sessionid}, manfile=#{manfile}"
-		puts "flowenv_args = #{flowenv_args}, flowenv_args class = #{flowenv_args.class}"
+		puts "flowargs = #{flowargs}, flowargs class = #{flowargs.class}"
 		status = nil
 
 		@command_mutex.synchronize do
@@ -79,13 +79,15 @@ class RexApi < RexMessage
 				#puts "Inserted EXEC_DATE value, manenv content follows"
 				#pp manifest.manenv
 
-				flowenv = eval(flowenv_args)
-				if flowenv.nil?
-					puts 'Error, flowenv object could not be created'
-					status = :failure
-				else
-					pp flowenv
-					manifest.manenv = flowenv.merge(manifest.manenv)
+				if !flowargs.nil?
+					flowenv = eval("#{flowargs}")
+					if flowenv.nil?
+						puts 'Error, invalid flowenv object'
+						status = :failure
+					else
+						pp flowenv
+						manifest.manenv = flowenv.merge!(manifest.manenv)
+					end
 				end
 
 				File.open( 'protomanifest.yaml', 'w' ) do |file|
