@@ -66,6 +66,8 @@ class RexApi < RexMessage
 		@command_mutex.synchronize do
 
 			manroot = "/Users/rashforth/rails_projects/maestro"
+			flowenv = Hash.new
+
 			#manifest = RemoteExecute::RexManifest.new(manfile)
 			manifest = YAML::load_file("#{manroot}/lib/flows/#{manfile}")
 			if manifest.nil?
@@ -83,7 +85,7 @@ class RexApi < RexMessage
 
 				if !flowargs.nil?
 					begin
-						flowenv = eval("#{flowargs}")
+						flowenv = "#{flowargs}"
 						if flowenv.nil?
 							puts 'Error, invalid flowenv object'
 							status = :failure
