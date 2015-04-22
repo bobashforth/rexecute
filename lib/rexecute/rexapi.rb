@@ -85,7 +85,7 @@ class RexApi < RexMessage
 
 				if !flowargs.nil?
 					begin
-						flowenv = eval("#{flowargs}")
+						flowenv = YAML::load(flowargs})
 						puts "flowenv.class = #{flowenv.class}"
 						if flowenv.nil?
 							status = :failure
