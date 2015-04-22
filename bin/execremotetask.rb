@@ -51,6 +51,7 @@ if host.nil? || taskname.nil? || execfile.nil?
 end
 
 puts "execargs = #{execargs}"
+puts "execargs.class = #{execargs.class}"
 
 puts "Starting remote execution of task #{taskname} on server #{host}"
 
