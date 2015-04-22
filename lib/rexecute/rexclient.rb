@@ -176,6 +176,8 @@ class RexClient < RexMessage
         begin
           pid = spawn(@manifest.manenv, command)
           puts "Spawned pid #{pid}."
+          STDOUT.flush
+          STDERR.flush
           retpid, status = Process.waitpid2( pid )
           retstatus = status.exitstatus
           puts "Returned pid is #{retpid}"
