@@ -31,7 +31,7 @@ optparse = OptionParser.new do |opts|
     options[:execfile] = value
   end
 
-  opts.on( '-a ARGS', '--args ARGS', 'args ARGS' ) do |value|
+  opts.on( '-x EXECARGS', '--execargs ARGS', 'execargs EXECARGS' ) do |value|
     pp value
     options[:execargs] = value
   end
@@ -44,7 +44,7 @@ controller = options[:controller]
 host = options[:host]
 taskname = options[:taskname]
 execfile = options[:execfile]
-args = options[:args]
+execargs = options[:execargs]
 
 if host.nil? || taskname.nil? || execfile.nil?
   abort "Error, must supply host, taskname, and execfile"
@@ -69,7 +69,7 @@ end
 status = :success
 
 puts "Setting manifest to #{execfile}"
-status = maestro.rex_set_manifest(sessionid, execfile, args)
+status = maestro.rex_set_manifest(sessionid, execfile, execargs)
 
 if status != :success
   puts "Failed to set manifest for client to #{manifestfile}"
