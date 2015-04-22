@@ -83,8 +83,7 @@ class RexApi < RexMessage
 
 				if !flowargs.nil?
 					begin
-						argstring =  "#{flowargs}"
-						flowenv = eval("#{argstring}")
+						flowenv = eval(flowargs)
 						if flowenv.nil?
 							puts 'Error, invalid flowenv object'
 							status = :failure
