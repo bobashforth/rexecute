@@ -150,7 +150,8 @@ class RexClient < RexMessage
 
     actions = @manifest.manactions
 
-    retstatus = :success
+    retstatus = 0
+    status = 0
     if startstep.to_i > actions.length.to_i
       puts "Error, startstep #{startstep} is out of bounds"
       return :failure
@@ -176,9 +177,7 @@ class RexClient < RexMessage
         begin
           pid = spawn(@manifest.manenv, command)
           puts "Spawned pid #{pid}."
-          STDOUT.flush
-          STDERR.flush
-          retpid, status = Process.waitpid2( pid )
+          retpid, status = Process.wait2( pid )
           retstatus = status.exitstatus
           puts "Returned pid is #{retpid}"
           puts "Process #{pid}, step #{action.stepnum} completed with status #{retstatus}"
