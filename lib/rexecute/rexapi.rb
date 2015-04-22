@@ -58,9 +58,9 @@ class RexApi < RexMessage
 
 	def rex_set_manifest( sessionid, manfile, flowargs=nil )
 
-		STDERR.puts "In rex_set_manifest, sessionid=#{sessionid}, manfile=#{manfile}"
-		STDERR.puts "flowargs = #{flowargs}, flowargs class = #{flowargs.class}"
-		STDERR.flush
+		puts "In rex_set_manifest, sessionid=#{sessionid}, manfile=#{manfile}"
+		puts "flowargs = #{flowargs}, flowargs class = #{flowargs.class}"
+
 		status = nil
 
 		@command_mutex.synchronize do
@@ -85,10 +85,11 @@ class RexApi < RexMessage
 
 				if !flowargs.nil?
 					begin
-						flowenv = flowargs
+						flowenv = "#{flowargs}"
+						puts "flowenv.class = #{flowenv.class}"
 						if flowenv.nil?
-							puts 'Error, invalid flowenv object'
 							status = :failure
+							abort 'Error, invalid flowenv object'
 						else
 							pp flowenv
 							manifest.manenv = flowenv.merge!(manifest.manenv)
