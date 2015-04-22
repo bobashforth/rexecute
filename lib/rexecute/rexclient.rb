@@ -165,18 +165,17 @@ class RexClient < RexMessage
     end
 
     begin
-
+      cmdenv = @manifest.manenv
       actions.each do |action|
         # Skip any prior steps to reach the startstep
         next if action.stepnum.to_i < startstep.to_i
         command = "#{prefix} '#{action.command}'"
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{command}\""
-        puts "contents of manenv:"
-        pp @manifest.manenv
+
         begin
-          #pid = spawn(@manifest.manenv, command)
-          pid = spawn(command)
+          pid = spawn( cmdenv, command)
+          #pid = spawn(command)
           puts "Spawned pid #{pid}."
           retpid, status = Process.waitpid2( pid )
           retstatus = status.exitstatus
