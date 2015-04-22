@@ -60,6 +60,7 @@ class RexApi < RexMessage
 
 		puts "In rex_set_manifest, sessionid=#{sessionid}, manfile=#{manfile}"
 		puts "flowargs = #{flowargs}, flowargs class = #{flowargs.class}"
+		STDOUT.flush
 		status = nil
 
 		@command_mutex.synchronize do
