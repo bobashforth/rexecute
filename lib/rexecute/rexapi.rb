@@ -66,7 +66,7 @@ class RexApi < RexMessage
 
 			manroot = "/Users/rashforth/rails_projects/maestro"
 			#manifest = RemoteExecute::RexManifest.new(manfile)
-			manifest = YAML::load_file("#{manroot}/#{manfile}")
+			manifest = YAML::load_file("#{manroot}/lib/flows/#{manfile}")
 			if manifest.nil?
  				@logger.error( "Error, manifest object could not be created")
   			status = :failure
