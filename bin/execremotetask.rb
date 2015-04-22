@@ -71,7 +71,7 @@ end
 status = :success
 
 puts "Setting manifest to #{execfile}"
-status = maestro.rex_set_manifest(sessionid, execfile, execargs.inspect)
+status = maestro.rex_set_manifest(sessionid, execfile, execargs)
 
 if status != :success
   puts "Failed to set manifest for client to #{manifestfile}"
