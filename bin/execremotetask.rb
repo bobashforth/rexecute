@@ -3,7 +3,7 @@
 require_relative '../lib/rexecute/rexapi'
 
 require 'optparse'
-require 'YAML'
+require 'yaml'
 require 'pp'
 
 # Hash for options passed in
