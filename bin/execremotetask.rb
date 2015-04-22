@@ -50,6 +50,8 @@ if host.nil? || taskname.nil? || execfile.nil?
   abort "Error, must supply host, taskname, and execfile"
 end
 
+puts "execargs = #{execargs}"
+
 puts "Starting remote execution of task #{taskname} on server #{host}"
 
 # Get a REX API object and trigger the manifest execution
