@@ -166,6 +166,9 @@ class RexClient < RexMessage
 
     begin
       cmdenv = @manifest.manenv
+      puts "Contents of command env follow:"
+      pp cmdenv
+      
       actions.each do |action|
         # Skip any prior steps to reach the startstep
         next if action.stepnum.to_i < startstep.to_i
