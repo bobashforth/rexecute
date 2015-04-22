@@ -175,7 +175,8 @@ class RexClient < RexMessage
         puts "contents of manenv:"
         pp @manifest.manenv
         begin
-          pid = spawn(@manifest.manenv, command)
+          #pid = spawn(@manifest.manenv, command)
+          pid = spawn(command)
           puts "Spawned pid #{pid}."
           retpid, status = Process.waitpid2( pid )
           retstatus = status.exitstatus
