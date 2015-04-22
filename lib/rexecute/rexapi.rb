@@ -58,11 +58,11 @@ class RexApi < RexMessage
 
 	def rex_set_manifest( sessionid, manfile, flowargs=nil )
 
-		STDOUT.puts "In rex_set_manifest, sessionid=#{sessionid}, manfile=#{manfile}"
-		STDOUT.puts "flowargs = #{flowargs}, flowargs class = #{flowargs.class}"
-		STDOUT.flush
+		STDERR.puts "In rex_set_manifest, sessionid=#{sessionid}, manfile=#{manfile}"
+		STDERR.puts "flowargs = #{flowargs}, flowargs class = #{flowargs.class}"
+		STDERR.flush
 		status = nil
-		raise
+
 		@command_mutex.synchronize do
 
 			manroot = "/Users/rashforth/rails_projects/maestro"
