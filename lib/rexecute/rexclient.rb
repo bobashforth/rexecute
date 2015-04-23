@@ -159,7 +159,7 @@ class RexClient < RexMessage
 
     if @manifest.manenv.has_key?("EXEC_USER")
       user = @manifest.manenv["EXEC_USER"]
-      prefix = "sudo su - #{user} -c "
+      prefix = "sudo su -m #{user} -c "
     else
       prefix = ""
     end
@@ -170,12 +170,6 @@ class RexClient < RexMessage
       puts "cmdenv.inspect = #{cmdenv.inspect}"
       puts "cmdenv.class = #{cmdenv.class}"
 
-      h = Hash.new
-      h['a'] = 'b'
-      h['b'] = 'c'
-      h['c'] = 'd'
-      h['d'] = 'd'
-
       actions.each do |action|
         # Skip any prior steps to reach the startstep
         next if action.stepnum.to_i < startstep.to_i
@@ -185,9 +179,9 @@ class RexClient < RexMessage
 
         begin
           #pid = spawn(cmdenv, command)
-          status = system(h, command)
-          puts "status = #{status}"
+          pid, status = system(cmdenv, command)
           retstatus = $?
+          puts "status = #{status}"
           #pid = spawn(command)
           #puts "Spawned pid #{pid}."
           #retpid, status = Process.waitpid2( pid )
