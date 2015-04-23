@@ -93,6 +93,7 @@ class RexApi < RexMessage
 						else
 							pp flowenv
 							manifest.manenv = flowenv.merge(manifest.manenv)
+							manifest.manenv = ENV.merge(manifest.manenv)
 						end
 					rescue => e
 						pp e
