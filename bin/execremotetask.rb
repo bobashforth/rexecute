@@ -55,6 +55,8 @@ puts "execargs.class = #{execargs.class}"
 
 puts "Starting remote execution of task #{taskname} on server #{host}"
 
+`env`
+
 # Get a REX API object and trigger the manifest execution
 maestro = RexApi.new("#{controller}")
 

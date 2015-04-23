@@ -92,7 +92,7 @@ class RexApi < RexMessage
 							abort 'Error, invalid flowenv object'
 						else
 							pp flowenv
-							manifest.manenv = flowenv.merge!(manifest.manenv)
+							manifest.manenv = flowenv.merge(manifest.manenv)
 						end
 					rescue => e
 						pp e

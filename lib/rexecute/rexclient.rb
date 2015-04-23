@@ -177,7 +177,7 @@ class RexClient < RexMessage
         puts "command to be executed is \"#{command}\""
 
         begin
-          pid = spawn("#{cmdenv}", command)
+          pid = spawn(cmdenv, command)
           #pid = spawn(command)
           puts "Spawned pid #{pid}."
           retpid, status = Process.waitpid2( pid )
