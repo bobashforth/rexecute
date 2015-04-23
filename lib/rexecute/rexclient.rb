@@ -184,12 +184,13 @@ class RexClient < RexMessage
         puts "command to be executed is \"#{command}\""
 
         begin
-          pid = spawn(h, command)
+          #pid = spawn(cmdenv, command)
+          status = system(h, command)
           #pid = spawn(command)
-          puts "Spawned pid #{pid}."
-          retpid, status = Process.waitpid2( pid )
+          #puts "Spawned pid #{pid}."
+          #retpid, status = Process.waitpid2( pid )
           retstatus = status.exitstatus
-          puts "Returned pid is #{retpid}"
+          #puts "Returned pid is #{retpid}"
           puts "Process #{pid}, step #{action.stepnum} completed with status #{retstatus}"
           action.exec_status = retstatus
         rescue => e
