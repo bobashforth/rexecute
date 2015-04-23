@@ -168,7 +168,7 @@ class RexClient < RexMessage
       cmdenv = @manifest.manenv
       puts "Contents of command env follow:"
       pp cmdenv
-      ENV = cmdenv.merge(ENV)
+      ENV['release_name'] = cmdenv['release_name']
 
       actions.each do |action|
         # Skip any prior steps to reach the startstep
