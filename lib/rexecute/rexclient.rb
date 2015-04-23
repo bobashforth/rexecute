@@ -168,7 +168,7 @@ class RexClient < RexMessage
       cmdenv = @manifest.manenv
       puts "Contents of command env follow:"
       puts "cmdenv.inspect = #{cmdenv.inspect}"
-      ENV['RELEASE_NAME'] = cmdenv['release_name']
+      puts "cmdenv.class = #{cmdenv.class}"
 
       actions.each do |action|
         # Skip any prior steps to reach the startstep
