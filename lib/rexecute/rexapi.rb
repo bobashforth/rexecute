@@ -74,8 +74,8 @@ class RexApi < RexMessage
  				@logger.error( "Error, manifest object could not be created")
   			status = :failure
   		else
-				puts "Loaded manfile #{manroot}/#{manfile}, manenv content follows"
-				#pp manifest.manenv
+				puts "Loaded manfile #{manroot}/#{manfile}, content follows"
+				pp manifest
 
 				t = Time.now()
 				manifest.manenv['EXEC_DATE'] = t.strftime("%Y%m%d_%H%M%S")
