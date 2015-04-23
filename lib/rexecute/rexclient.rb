@@ -179,7 +179,7 @@ class RexClient < RexMessage
 
         begin
           pp cmdenv
-          pid = spawn( {cmdenv.inspect, command)
+          pid = spawn(cmdenv.inspect, command)
           #pid = spawn(command)
           puts "Spawned pid #{pid}."
           retpid, status = Process.waitpid2( pid )
