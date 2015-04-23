@@ -167,7 +167,7 @@ class RexClient < RexMessage
     begin
       cmdenv = @manifest.manenv
       puts "Contents of command env follow:"
-      pp cmdenv
+      puts "cmdenv.inspect = #{cmdenv.inspect}"
       ENV['RELEASE_NAME'] = cmdenv['release_name']
 
       actions.each do |action|
@@ -178,7 +178,8 @@ class RexClient < RexMessage
         puts "command to be executed is \"#{command}\""
 
         begin
-          pid = spawn( {'RELEASE_NAME'=>'march2015'}, command)
+          pp cmdenv
+          pid = spawn( {cmdenv.inspect, command)
           #pid = spawn(command)
           puts "Spawned pid #{pid}."
           retpid, status = Process.waitpid2( pid )
