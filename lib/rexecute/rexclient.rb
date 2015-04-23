@@ -187,7 +187,7 @@ class RexClient < RexMessage
           #pid = spawn(cmdenv, command)
           status = system(h, command)
           puts "status = #{status}"
-          retstatus = $?.status
+          retstatus = $?
           #pid = spawn(command)
           #puts "Spawned pid #{pid}."
           #retpid, status = Process.waitpid2( pid )
@@ -200,7 +200,7 @@ class RexClient < RexMessage
           pp e
         end
 
-        if "#{retstatus}" != "#{action.success_status}"
+        if status.nil? || "#{retstatus}" != "#{action.success_status}"
           retstatus = :failure
           break
         else
