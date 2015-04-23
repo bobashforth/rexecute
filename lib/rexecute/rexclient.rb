@@ -170,6 +170,12 @@ class RexClient < RexMessage
       puts "cmdenv.inspect = #{cmdenv.inspect}"
       puts "cmdenv.class = #{cmdenv.class}"
 
+      h = Hash.new
+      h['a'] = 'b'
+      h['b'] = 'c'
+      h['c'] = 'd'
+      h['d'] = 'd'
+
       actions.each do |action|
         # Skip any prior steps to reach the startstep
         next if action.stepnum.to_i < startstep.to_i
@@ -178,8 +184,7 @@ class RexClient < RexMessage
         puts "command to be executed is \"#{command}\""
 
         begin
-          pp cmdenv
-          pid = spawn(cmdenv, command)
+          pid = spawn(h, command)
           #pid = spawn(command)
           puts "Spawned pid #{pid}."
           retpid, status = Process.waitpid2( pid )
