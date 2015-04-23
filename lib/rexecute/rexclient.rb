@@ -163,7 +163,7 @@ class RexClient < RexMessage
     else
       prefix = ""
     end
-
+    prefix = ""
     begin
       cmdenv = @manifest.manenv
       puts "Contents of command env follow:"
