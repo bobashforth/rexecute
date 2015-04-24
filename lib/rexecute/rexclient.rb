@@ -150,7 +150,7 @@ class RexClient < RexMessage
 
     actions = @manifest.manactions
 
-    execstatus = 0
+    execstatus = 1
     retstatus = :success
     if startstep.to_i > actions.length.to_i
       puts "Error, startstep #{startstep} is out of bounds"
@@ -181,31 +181,30 @@ class RexClient < RexMessage
           #pid = spawn(cmdenv, command)
           cmd_status = system(cmdenv, command)
           puts "cmd_status = #{cmd_status}"
-          status_string = $?
+          procstatus = $?
           if cmd_status.nil?
-            abort "Error, could not spawn command #{command}"
+            puts "Error, could not spawn command #{command}"
+            retstatus = :failure
           else
-            if /pid\s+(?'pid'\d+)\s+exit\s+(?'status'\d+)/ =~ status_string
-              execstatus = status
-              puts "execstatus = #{execstatus}"
-              puts "pid = #{pid}"
-            else
-              abort "Error, failed to spawn command #{command}"
+              execstatus = procstatus.exitstatus
+              pid = procstatus.pid
+              puts "execstatus = #{execstatus}, pid = #{pid}"
+              if execstatus != 0
+                puts "Error, failed to spawn command #{command}"
+                retstatus = :failure
+              end
             end
           end
-          #pid = spawn(command)
-          #puts "Spawned pid #{pid}."
-          #retpid, status = Process.waitpid2( pid )
-          #retstatus = status.exitstatus
-          #puts "Returned pid is #{retpid}"
+
           puts "Process #{pid}, step #{action.stepnum} completed with status #{execstatus}"
           action.exec_status = execstatus
         rescue => e
           puts "Encountered exception when spawning command, error follows:"
           pp e
+          retstatus = :failure
         end
 
-        if "#{execstatus}" != "#{action.success_status}"
+        if retstatus == :failure || "#{execstatus}" != "#{action.success_status}"
           retstatus = :failure
           break
         else
