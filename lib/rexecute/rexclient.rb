@@ -186,13 +186,12 @@ class RexClient < RexMessage
             puts "Error, could not spawn command #{command}"
             retstatus = :failure
           else
-              execstatus = procstatus.exitstatus
-              pid = procstatus.pid
-              puts "execstatus = #{execstatus}, pid = #{pid}"
-              if execstatus != 0
-                puts "Error, failed to spawn command #{command}"
-                retstatus = :failure
-              end
+            execstatus = procstatus.exitstatus
+            pid = procstatus.pid
+            puts "execstatus = #{execstatus}, pid = #{pid}"
+            if execstatus != 0
+              puts "Error, failed to spawn command #{command}"
+              retstatus = :failure
             end
           end
 
