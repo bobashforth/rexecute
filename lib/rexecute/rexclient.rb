@@ -164,7 +164,7 @@ class RexClient < RexMessage
       prefix = ""
     end
 
-   begin
+    begin
       cmdenv = @manifest.manenv
       puts "Contents of command env follow:"
       puts "cmdenv.inspect = #{cmdenv.inspect}"
@@ -212,9 +212,10 @@ class RexClient < RexMessage
         end
       end
 
-    rescue => e
-      pp e
-      retstatus = :failure
+      rescue => e
+        pp e
+        retstatus = :failure
+      end
     end
 
     puts "Returning from exec_resume"
