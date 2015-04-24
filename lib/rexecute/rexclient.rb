@@ -211,10 +211,9 @@ class RexClient < RexMessage
         end
       end
 
-      rescue => e
-        pp e
-        retstatus = :failure
-      end
+    rescue => e
+      pp e
+      retstatus = :failure
     end
 
     puts "Returning from exec_resume"
