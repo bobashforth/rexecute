@@ -159,7 +159,8 @@ class RexClient < RexMessage
 
     if @manifest.manenv.has_key?("EXEC_USER")
       user = @manifest.manenv["EXEC_USER"]
-      prefix = "sudo su #{user} -c "
+      #prefix = "sudo su -l #{user} -c "
+      prefix = ""
     else
       prefix = ""
     end
