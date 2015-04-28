@@ -78,6 +78,10 @@ class RexApi < RexMessage
 				pp manifest
 
 				t = Time.now()
+				if manifest.manenv.nil?
+					manenv = Hash.new
+					manifest.manenv = manenv
+				end
 				manifest.manenv['EXEC_DATE'] = t.strftime("%Y%m%d_%H%M%S")
 				puts "EXEC_DATE = #{manifest.manenv['EXEC_DATE']}"
 				#puts "Inserted EXEC_DATE value, manenv content follows"
