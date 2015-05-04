@@ -157,12 +157,9 @@ class RexClient < RexMessage
       return :failure
     end
 
+    user = nil
     if @manifest.manenv.has_key?("EXEC_USER")
       user = @manifest.manenv["EXEC_USER"]
-      #prefix = "sudo su -l #{user} -c "
-      prefix = "sudo su -c "
-    else
-      prefix = ""
     end
 
     begin
@@ -174,9 +171,15 @@ class RexClient < RexMessage
       actions.each do |action|
         # Skip any prior steps to reach the startstep
         next if action.stepnum.to_i < startstep.to_i
-        command = "#{prefix} '#{action.command}'"
-        puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
-        puts "command to be executed is \"#{command}\""
+
+        if user.nil?
+          command = "#{action.command}"
+        else
+          command = "/usr/local/mmc_tools/script/local/sudo.sh #{user} \"#{action.command}\""
+        end
+
+        puts "Executing stepnum #{action.stepnum}: \'#{action.label}\'"
+        puts "command to be executed is \'#{command}\'"
 
         begin
           #pid = spawn(cmdenv, command)
