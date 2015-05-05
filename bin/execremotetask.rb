@@ -31,9 +31,14 @@ optparse = OptionParser.new do |opts|
     options[:execfile] = value
   end
 
-  opts.on( '-x EXECARGS', '--execargs ARGS', 'execargs EXECARGS' ) do |value|
+  opts.on( '-x EXECARGS', '--execargs EXECARGS', 'execargs EXECARGS' ) do |value|
     pp value
     options[:execargs] = value
+  end
+
+  opts.on( '-i ID', '--id ID', 'id ID' ) do |value|
+    pp value
+    options[:id] = value
   end
 
 end
@@ -45,6 +50,7 @@ host = options[:host]
 taskname = options[:taskname]
 execfile = options[:execfile]
 execargs = options[:execargs]
+id = options[:id]
 
 if host.nil? || taskname.nil? || execfile.nil?
   abort "Error, must supply host, taskname, and execfile"
@@ -62,7 +68,7 @@ maestro = RexApi.new("#{controller}")
 
 puts "API created, calling rex_init"
 
-sessionid = maestro.rex_init(taskname, host)
+sessionid = maestro.rex_init(taskname, host, id)
 
 if sessionid.empty?
   puts "Error in initializing rex client session"

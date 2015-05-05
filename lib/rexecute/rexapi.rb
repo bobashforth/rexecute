@@ -34,11 +34,12 @@ class RexApi < RexMessage
 	end
 
 	# Initialize a remote RexTaskClient session on the specified clienthost.
-	def rex_init( taskname, clienthost )
+	def rex_init( taskname, clienthost, id )
 
 		payload = Hash.new
 		payload["taskname"] = "#{taskname}"
-		payload["clienthost"] = "#{clienthost}"	
+		payload["clienthost"] = "#{clienthost}"
+		payload["id"] = "#{id}"
 
 		return_sid = "#{@conversationid}"
 		status = :success
