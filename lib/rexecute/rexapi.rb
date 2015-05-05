@@ -14,7 +14,7 @@ class RexApi < RexMessage
 		@serverhost = serverhost
 		@serverport = RexSettings::SERVERPORT
 		controllersid = RexSettings::CONTROLLERSID
-		@logger = Logger.new( '/var/log/rex/rexapi.log')
+		@logger = Logger.new(STDOUT)
 		@logger.level = Logger::INFO
 		@logger.sev_threshold = Logger::INFO
 		@conversationid = SecureRandom.uuid()

@@ -119,7 +119,7 @@ class RexServer < RexMessage
     id = msg["id"]
 
     command = "startrexclient.rb -h #{@serverhost} -s #{sessionid} -t #{taskname}"
-    wholecommand = "ssh -nf #{clienthost} \'script -f -c \"#{command}\"  Job_#{id}\' &>/dev/null &"
+    wholecommand = "ssh -nf #{clienthost} \'script -f -c \"#{command}\"  Job_#{id}.log\' &>/dev/null &"
     @logger.info( "Command to client is #{wholecommand}" )
 
     status = system( "#{wholecommand}" )
