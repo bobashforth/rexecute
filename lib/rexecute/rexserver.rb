@@ -88,10 +88,6 @@ class RexServer < RexMessage
         end
 
         @logger.info( "Connection established" )
-        puts "clients hash:"
-        pp @clients
-        puts "controllers hash:"
-        pp @controllers
 
       end
     }.join
@@ -208,6 +204,10 @@ class RexServer < RexMessage
         puts "Deleting conversation #{sessionid}"
         @clients.delete["#{sessionid}"]
         @controllers.delete["#{sessionid}"]
+        puts "clients hash:"
+        pp @clients
+        puts "controllers hash:"
+        pp @controllers
       end
 
     when :status_ack
