@@ -212,6 +212,7 @@ class RexServer < RexMessage
         rescue => exec_star
           puts "Error deleting conversation hash entries"
           pp e
+        end
       end
 
     when :status_ack
