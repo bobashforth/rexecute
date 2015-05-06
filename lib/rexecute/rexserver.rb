@@ -88,7 +88,9 @@ class RexServer < RexMessage
         end
 
         @logger.info( "Connection established" )
+        puts "clients hash:"
         pp @clients
+        puts "controllers hash:"
         pp @controllers
 
       end
@@ -203,6 +205,7 @@ class RexServer < RexMessage
       # for this conversation from @controllers and @clients hashes.
       status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
       @conversation_mutex.synchronize do
+        puts "Deleting conversation #{sessionid}"
         @clients.delete["#{sessionid}"]
         @controllers.delete["#{sessionid}"]
       end
