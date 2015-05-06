@@ -204,10 +204,8 @@ class RexServer < RexMessage
         puts "Deleting conversation #{sessionid}"
         @clients.delete["#{sessionid}"]
         @controllers.delete["#{sessionid}"]
-        puts "clients hash:"
-        pp @clients
-        puts "controllers hash:"
-        pp @controllers
+        puts "@clients hash count: #{@clients.length}"
+        puts "@controllers hash count: #{@controllers.length}"
       end
 
     when :status_ack
