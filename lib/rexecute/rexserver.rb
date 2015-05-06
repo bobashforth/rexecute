@@ -88,6 +88,8 @@ class RexServer < RexMessage
         end
 
         @logger.info( "Connection established" )
+        pp @clients
+        pp @controllers
 
       end
     }.join
