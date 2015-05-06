@@ -25,7 +25,7 @@ class RexClient < RexMessage
     @manifest = nil
     @taskname = taskname
 
-     @execthread = nil
+    @execthread = nil
 
     listen
     @response.join
@@ -129,8 +129,8 @@ class RexClient < RexMessage
         @task_status = exec_resume( msg, startstep )
       end
 
-    when :exec_abort
-      puts "Received abort message, terminating client session"
+    when :exec_kill
+      puts "Received kill message, terminating client session"
       exit 0
 
     when :status_ack

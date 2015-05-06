@@ -24,7 +24,7 @@ class RexServer < RexMessage
     @controllersid = RexSettings::CONTROLLERSID
     @clients = Hash.new
     @controllers = Hash.new
-    @client_mutex = Mutex.new
+    @conversation_mutex = Mutex.new
 
     run
   end
@@ -42,7 +42,7 @@ class RexServer < RexMessage
         if "#{client_type}" == "#{@controllersid}"
           sessiontype = :controller
           sessionid = "#{sid}"
-          @client_mutex.synchronize do
+          @conversation_mutex.synchronize do
             @controllers["#{sessionid}"] = client
           end
           puts "New controller session accepted, sessionid #{sessionid}"
@@ -79,7 +79,7 @@ class RexServer < RexMessage
             logger.fatal( "This sessionid is already in use" )
             Thread.kill self
           else
-            @client_mutex.synchronize do
+            @conversation_mutex.synchronize do
               @clients["#{sid}"] = client
             end
             puts "New client session accepted, sessionid #{sid}"
@@ -194,8 +194,18 @@ class RexServer < RexMessage
       status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_resume, payload )
       status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
 
-    when :exec_abort
-      status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_abort )
+    when :exec_kill
+      # We need to tread carefully here. Wait for the status to return, trusting that
+      # the client will have committed suppuku as requested.
+      status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_kill )
+
+      # Now send the status back to the caller, and only then remove the entries
+      # for this conversation from @controllers and @clients hashes.
+      status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
+      @conversation_mutex.synchronize do
+        @clients.delete["#{sessionid}"]
+        @controllers.delete["#{sessionid}"]
+      end
 
     when :status_ack
       status = msg["status"].to_sym

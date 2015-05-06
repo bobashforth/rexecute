@@ -12,11 +12,11 @@ class RexMessage
   # We put these symbols into an array so that we can check for validity
   # of each message type we encounter
   REX_MESSAGE_TYPES = [ :rex_init, :set_manifest, :get_task_state,
-    :get_task_status, :status_ack, :exec_start, :exec_resume, :exec_abort ]
+    :get_task_status, :status_ack, :exec_start, :exec_resume, :exec_kill ]
 
   REX_MESSAGE_RETURNS = [ :success, :failure, :invalid_message_type ]
 
-  REX_TASK_STATES = [ :init, :idle, :running, :succeeded, :failed, :aborted, :paused ]
+  REX_TASK_STATES = [ :init, :idle, :running, :succeeded, :failed, :killed, :paused ]
 
   def initialize
     # This class is meant to be completely abstract; descendant classes will

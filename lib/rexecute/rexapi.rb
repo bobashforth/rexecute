@@ -191,7 +191,7 @@ class RexApi < RexMessage
 		puts "in rex_kill before synchronize"
 		@command_mutex.synchronize do
 			@logger.info( "Killing client" )
-			status = rex_send_command( @server, sessionid, :exec_abort )
+			status = rex_send_command( @server, sessionid, :exec_kill )
 		end
 		puts "in rex_kill after synchronize"
 		return status
