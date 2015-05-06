@@ -201,11 +201,17 @@ class RexServer < RexMessage
       # for this conversation from @controllers and @clients hashes.
       status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
       @conversation_mutex.synchronize do
-        puts "Deleting conversation #{sessionid}"
-        @clients.delete["#{sessionid}"]
-        @controllers.delete["#{sessionid}"]
-        puts "@clients hash count: #{@clients.length}"
-        puts "@controllers hash count: #{@controllers.length}"
+        begin
+          puts "@clients hash count: #{@clients.length}"
+          puts "@controllers hash count: #{@controllers.length}"
+          puts "Deleting conversation #{sessionid}"
+          @clients.delete["#{sessionid}"]
+          @controllers.delete["#{sessionid}"]
+          puts "@clients hash count: #{@clients.length}"
+          puts "@controllers hash count: #{@controllers.length}"
+        rescue => exec_star
+          puts "Error deleting conversation hash entries"
+          pp e
       end
 
     when :status_ack
