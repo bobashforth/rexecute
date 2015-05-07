@@ -207,7 +207,7 @@ class RexServer < RexMessage
           @controllers.delete("#{sessionid}")
           puts "@clients hash count: #{@clients.length}"
           puts "@controllers hash count: #{@controllers.length}"
-        rescue => exec_star
+        rescue => e
           puts "Error deleting conversation hash entries"
           pp e
         end
