@@ -35,11 +35,13 @@ if manfile.nil? or flowman.nil?
   abort "Error, manifest name and flow manifest name must be provided"
 end
 
-manifest = RemoteExecute::RexManifest.new(manfile)
+manifest = RemoteExecute::RexManifest.new()
 
 if manifest.nil?
 	puts "Error creating flow manifest object, exiting."
 	exit 1
+else
+  manifest.manfile_initialize(manfile)
 end
 
 puts "Loaded manfile lib/#{manfile}, manifest flow object follows"

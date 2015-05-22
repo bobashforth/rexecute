@@ -5,5 +5,5 @@ module RexSettings
 	SERVERPORT = 2014
 	CONTROLLERSID = "RexController"
 	REXSERVERID = "RexServer"
-
+	MANROOT = "/etc/rex/flows"
 end
