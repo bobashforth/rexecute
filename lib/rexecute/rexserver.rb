@@ -45,12 +45,12 @@ class RexServer < RexMessage
           @conversation_mutex.synchronize do
             @controllers["#{sessionid}"] = client
           end
-          puts "New controller session accepted, sessionid #{sessionid}"
+          @logger.info("New controller session accepted, sessionid #{sessionid}")
 
           # Get a message from the controller; it has to be a rex_init message
           # by definition
           msg = rex_get_message( client )
-          puts "rexserver: Received initial controller message"
+          @logger.info("rexserver: Received initial controller message")
           if msg["message_type"].to_sym == :rex_init
             status = rex_init( msg )
             status = rex_send_status( @controllers["#{sessionid}"], sessionid, status )
@@ -70,7 +70,7 @@ class RexServer < RexMessage
           end
 
         else
-          puts "This is a client session"
+          @logger.info("This is a client session")
           sessiontype = :taskclient
           if not @controllers.has_key?( "#{sid}" )
             @logger.fatal( "Error, sessionid #{sessionid} has not been registered" )
@@ -82,7 +82,7 @@ class RexServer < RexMessage
             @conversation_mutex.synchronize do
               @clients["#{sid}"] = client
             end
-            puts "New client session accepted, sessionid #{sid}"
+            @logger.info("New client session accepted, sessionid #{sid}")
             pp @clients
           end
         end
@@ -98,7 +98,7 @@ class RexServer < RexMessage
     # commands. Each command will specifically request return
     # status from the client, so no client socket processing appears here.
     loop {
-      puts "In process_commands, top of loop"
+      @logger.info("In process_commands, top of loop")
 
       msg = rex_get_message( @controllers["#{sessionid}"] )
 
@@ -111,7 +111,7 @@ class RexServer < RexMessage
   end
 
   def rex_init( msg )
-    puts "In rex_init"
+    @logger.info("In rex_init")
 
     taskname = msg["taskname"]
     sessionid = msg["sessionid"]
@@ -162,30 +162,30 @@ class RexServer < RexMessage
 
   def dispatch_command( msg )
 
-    puts "In dispatch_command"
+    @logger.info("In dispatch_command")
     # Dispatch of each message is based on the message type
     mtype = msg["message_type"].to_sym
     sessionid = msg["sessionid"]
 
-    puts "mtype is #{mtype}"
-    puts "sessionid is #{sessionid}"
+    @logger.info("mtype is #{mtype}")
+    @logger.info("sessionid is #{sessionid}")
 
     status = :success
 
     case mtype
 
     when :set_manifest
-      puts "in :set_manifest case, msg = #{msg}"
+      @logger.info("in :set_manifest case, msg = #{msg}")
       status = set_manifest( msg )
       status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
 
     when :exec_start
-      puts "in :exec_start case, msg = #{msg}"
+      @logger.info("in :exec_start case, msg = #{msg}")
       status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_start )
       status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
 
     when :exec_resume
-      puts "in :exec_resume case, msg = #{msg}"
+      @logger.info("in :exec_resume case, msg = #{msg}")
       startstep = msg["startstep"]
       payload = Hash.new
       payload["startstep"] = "#{startstep}"
@@ -202,13 +202,13 @@ class RexServer < RexMessage
       status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
       @conversation_mutex.synchronize do
         begin
-          puts "Deleting conversation #{sessionid}"
+          @logger.info("Deleting conversation #{sessionid}")
           @clients.delete("#{sessionid}")
           @controllers.delete("#{sessionid}")
-          puts "@clients hash count: #{@clients.length}"
-          puts "@controllers hash count: #{@controllers.length}"
+          @logger.info("@clients hash count: #{@clients.length}")
+          @logger.info("@controllers hash count: #{@controllers.length}")
         rescue => e
-          puts "Error deleting conversation hash entries"
+          @logger.info("Error deleting conversation hash entries")
           pp e
         end
       end
@@ -238,7 +238,6 @@ class RexServer < RexMessage
       i += 1
     end
 
-    puts "i = #{i}"
     pp @clients["#{sessionid}"]
 
     if @clients["#{sessionid}"].nil?

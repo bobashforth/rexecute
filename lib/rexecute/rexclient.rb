@@ -15,7 +15,7 @@ class RexClient < RexMessage
   def initialize( serverhost, sessionid, taskname )
     @sessionid = sessionid
     port = RexSettings::SERVERPORT
-    @logger = Logger.new(STDOUT)
+    @logger = Logger.new('/var/log/rex/rexclient.log')
     @logger.sev_threshold = Logger::INFO
     @logger.level = Logger::INFO
     @server = TCPSocket.new( serverhost, port )
