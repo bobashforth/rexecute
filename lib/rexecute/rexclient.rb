@@ -178,7 +178,7 @@ class RexClient < RexMessage
           command = "/usr/local/mmc_tools/script/local/sudo.sh #{user} \"#{action.command}\""
         end
 
-        exec_command = eval(command)
+        exec_command = eval("#{command}")
         puts "Executing stepnum #{action.stepnum}: \'#{action.label}\'"
         puts "command to be executed is \'#{exec_command}\'"
 
