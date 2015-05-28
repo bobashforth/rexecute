@@ -37,9 +37,6 @@ if host.nil? or sessionid.nil?
   abort "Error, host and sessionid must be provided"
 end
 
-Process::UID.grant_privilege(402)
-Process::UID.change_privilege(402)
-
 rex_task_client = RexClient.new( host, sessionid, taskname )
 
 

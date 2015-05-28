@@ -178,23 +178,24 @@ class RexClient < RexMessage
           command = "/usr/local/mmc_tools/script/local/sudo.sh #{user} \"#{action.command}\""
         end
 
+        exec_command = eval(command)
         puts "Executing stepnum #{action.stepnum}: \'#{action.label}\'"
-        puts "command to be executed is \'#{command}\'"
+        puts "command to be executed is \'#{exec_command}\'"
 
         begin
           #pid = spawn(cmdenv, command)
-          cmd_status = system(cmdenv, command)
+          cmd_status = system(cmdenv, exec_command)
           puts "cmd_status = #{cmd_status}"
           procstatus = $?
           if cmd_status.nil?
-            puts "Error, could not spawn command #{command}"
+            puts "Error, could not spawn command #{exec_command}"
             retstatus = :failure
           else
             execstatus = procstatus.exitstatus
             pid = procstatus.pid
             puts "execstatus = #{execstatus}, pid = #{pid}"
             if execstatus != 0
-              puts "Error, failed to spawn command #{command}"
+              puts "Error, failed to spawn command #{exec_command}"
               retstatus = :failure
             end
           end
