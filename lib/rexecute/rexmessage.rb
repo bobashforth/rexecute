@@ -64,7 +64,7 @@ class RexMessage
     begin
       sock.puts( rex_message )
       #@logger.info( rex_message )
-      @logger.info("rex_send_raw: message sent, #{rex_message}"
+      @logger.info("rex_send_raw: message sent, #{rex_message}")
     rescue => e
       pp e
       @logger.error( "Error in sending message using socket" )

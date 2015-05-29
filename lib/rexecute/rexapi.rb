@@ -14,7 +14,7 @@ class RexApi < RexMessage
 		@serverhost = serverhost
 		@serverport = RexSettings::SERVERPORT
 		controllersid = RexSettings::CONTROLLERSID
-		@logger = Logger.new(STDOUT)
+		@logger = Logger.new('/var/log/rex/rexapi.log')
 		@logger.level = Logger::INFO
 		@logger.sev_threshold = Logger::INFO
 		@conversationid = SecureRandom.uuid()
@@ -29,7 +29,7 @@ class RexApi < RexMessage
 			# Tell the server that we're a controller, and include the conversationid
 			@server.puts( "#{controllersid}:#{@conversationid}")
 
-			puts "RexApi instance created successfully"
+			@logger.info("RexApi instance created successfully")
 		end
 	end
 
