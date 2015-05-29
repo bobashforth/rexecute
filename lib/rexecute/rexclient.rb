@@ -175,7 +175,7 @@ class RexClient < RexMessage
         if user.nil?
           command = "#{action.command}"
         else
-          command = "/usr/local/mmc_tools/script/local/sudo.sh #{user} \"#{action.command}\""
+          command = "/usr/local/mmc_tools/script/local/sudo.sh #{user} \'#{action.command}\'"
         end
 
         exec_command = "#{command}"
