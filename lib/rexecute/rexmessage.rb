@@ -41,12 +41,12 @@ class RexMessage
 
   def rex_send_message( sock, conversationid, message_type, payload=nil )
     
-    puts "In rex_send_message"
+    @logger.info("In rex_send_message")
     msg = rex_wrap_message( conversationid, message_type, payload )
     if msg.nil?
       @logger.fatal( "Error, failed to wrap message." )
     end
-    puts "rex_send_message, msg=#{msg}"
+    @logger.info("rex_send_message, msg=#{msg}")
     
     status = rex_send_raw( sock, msg )
     check( status )
@@ -64,7 +64,7 @@ class RexMessage
     begin
       sock.puts( rex_message )
       #@logger.info( rex_message )
-      puts "rex_send_raw: message sent, #{rex_message}"
+      @logger.info("rex_send_raw: message sent, #{rex_message}"
     rescue => e
       pp e
       @logger.error( "Error in sending message using socket" )
@@ -76,7 +76,7 @@ class RexMessage
   end
 
   def rex_send_status( sock, conversationid, status )
-    puts "In rex_send_status, status is #{status}"
+    @logger.info("In rex_send_status, status is #{status}")
 
     payload = Hash.new
     payload["status"] = "#{status}"
@@ -90,7 +90,7 @@ class RexMessage
   # (No 'unwrap' method is provided because json.parse() suffices.)
   def rex_wrap_message( sessionid, message_type, payload=nil )
 
-    puts message_type
+    @logger.info(message_type)
 
     if sessionid.empty? or message_type.empty?
       @logger.error( "Error, message_type and sessionid must be provided" )
@@ -112,14 +112,14 @@ class RexMessage
       jmsg = msg.merge( payload ).to_json
     end
 
-    puts "jmsg: #{jmsg}"
+    @logger.info("jmsg: #{jmsg}")
     return jmsg
 
   end
 
   def rex_get_message( sock )
     msg = rex_get_message_raw( sock )
-    #@logger.info "rex_get_message, msg=\"#{msg}\""
+    #@logger.info "rex_get_message, msg=\"#{msg}\"")
 
     return JSON.parse( msg )
   end
@@ -153,7 +153,7 @@ class RexMessage
     rex_send_message( sock, conversationid, :reap_task )
 
     status = read_task_status( sock, conversationid )
-    puts "In get_task_status, status is #{status}"
+    @logger.info("In get_task_status, status is #{status}")
     return status
   end
 
@@ -162,7 +162,7 @@ class RexMessage
     rex_send_message( sock, conversationid, :get_task_status )
 
     status = read_task_status( sock, conversationid )
-    puts "In get_task_status, status is #{status}"
+    @logger.info("In get_task_status, status is #{status}")
     return status
   end
 
@@ -173,13 +173,13 @@ class RexMessage
 
     if mtype == :status_ack
       status = msg["status"].to_sym
-      puts "Setting status to #{status}.to_sym"
+      @logger.info("Setting status to #{status}.to_sym")
     else
       status = :invalid_message_type
       @logger.error( "Invalid message type #{mtype}, status set to #{status}")
     end
 
-    puts "In read_task_status, status is #{status}"
+    @logger.info("In read_task_status, status is #{status}")
 
     return status
 
