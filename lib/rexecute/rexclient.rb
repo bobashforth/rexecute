@@ -229,6 +229,7 @@ class RexClient < RexMessage
   end
 
   def process_rexvars(command, cmdenv)
+    exec_command = ""
     cmdenv.each do | key, value |
       macro = "\##{key}\#"
       value = "#{cmdenv[key]}"
