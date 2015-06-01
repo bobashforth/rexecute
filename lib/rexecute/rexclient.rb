@@ -160,6 +160,10 @@ class RexClient < RexMessage
     user = nil
     if @manifest.manenv.has_key?("EXEC_USER")
       user = @manifest.manenv["EXEC_USER"]
+      #prefix = "sudo su -l #{user} -c "
+      prefix = "sudo su -c "
+    else
+      prefix = ""
     end
 
     begin
@@ -178,24 +182,23 @@ class RexClient < RexMessage
           command = "/usr/local/mmc_tools/script/local/sudo.sh #{user} \'#{action.command}\'"
         end
 
-        exec_command = "#{command}"
         puts "Executing stepnum #{action.stepnum}: \'#{action.label}\'"
-        puts "command to be executed is \'#{exec_command}\'"
+        puts "command to be executed is \'#{command}\'"
 
         begin
           #pid = spawn(cmdenv, command)
-          cmd_status = system(cmdenv, exec_command)
+          cmd_status = system(cmdenv, command)
           puts "cmd_status = #{cmd_status}"
           procstatus = $?
           if cmd_status.nil?
-            puts "Error, could not spawn command #{exec_command}"
+            puts "Error, could not spawn command #{command}"
             retstatus = :failure
           else
             execstatus = procstatus.exitstatus
             pid = procstatus.pid
             puts "execstatus = #{execstatus}, pid = #{pid}"
             if execstatus != 0
-              puts "Error, failed to spawn command #{exec_command}"
+              puts "Error, failed to spawn command #{command}"
               retstatus = :failure
             end
           end
