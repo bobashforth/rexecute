@@ -231,7 +231,7 @@ class RexClient < RexMessage
   def process_rexvars(command, cmdenv)
     exec_command = ""
     cmdenv.each do | key, value |
-      value = "cmdenv['#{key}']"
+      value = "#{cmdenv['#{key}']}"
       puts "Replacing macro \##{key}\# with value #{value}"
       exec_command = command.gsub("/\##{key}\#/", "#{value}")
     end
