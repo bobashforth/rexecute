@@ -176,26 +176,28 @@ class RexClient < RexMessage
         # Skip any prior steps to reach the startstep
         next if action.stepnum.to_i < startstep.to_i
 
-        dumpenv(cmdenv, 'rex_envdump')
-
         command = "#{prefix} '#{action.command}'"
+
+        exec_command = process_rexvars(command, cmdenv)
+
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
-        puts "command to be executed is \"#{command}\""
+        puts "command to be executed is \"#{exec_command}\""
 
         begin
           #pid = spawn(cmdenv, command)
-          cmd_status = system(cmdenv, command)
+
+          cmd_status = system(exec_command)
           puts "cmd_status = #{cmd_status}"
           procstatus = $?
           if cmd_status.nil?
-            puts "Error, could not spawn command #{command}"
+            puts "Error, could not spawn command #{exec_command}"
             retstatus = :failure
           else
             execstatus = procstatus.exitstatus
             pid = procstatus.pid
             puts "execstatus = #{execstatus}, pid = #{pid}"
             if execstatus != 0
-              puts "Error, failed to spawn command #{command}"
+              puts "Error, failed to spawn command #{exec_command}"
               retstatus = :failure
             end
           end
@@ -226,14 +228,12 @@ class RexClient < RexMessage
 
   end
 
-  def dumpenv(envhash, filename)
-
-    File.open( "#{filename}", 'w' ) do |file|
-
-      envhash.each do | key, value |
-        file.write "#{key}=#{value}"
-      end
+  def process_rexvars(command, cmdenv)
+    cmdenv.each do | key, value |
+      command.gsub! "\#{key}\#{}", "#{cmdenv[key]}"
     end
+    return command
   end
+
 end
 
