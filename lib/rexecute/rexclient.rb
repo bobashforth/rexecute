@@ -176,6 +176,8 @@ class RexClient < RexMessage
         # Skip any prior steps to reach the startstep
         next if action.stepnum.to_i < startstep.to_i
 
+        dumpenv(cmdenv, 'rex_envdump')
+
         command = "#{prefix} '#{action.command}'"
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{command}\""
@@ -222,6 +224,16 @@ class RexClient < RexMessage
     puts "Returning from exec_resume"
     return retstatus
 
+  end
+
+  def dumpenv(envhash, filename)
+
+    File.open( "#{filename}", 'w' ) do |file|
+
+      envhash.each do | key, value |
+        file.write "#{key}=#{value}"
+      end
+    end
   end
 end
 
