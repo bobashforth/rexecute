@@ -171,6 +171,7 @@ class RexClient < RexMessage
       puts "Contents of command env follow:"
       puts "cmdenv.inspect = #{cmdenv.inspect}"
       puts "cmdenv.class = #{cmdenv.class}"
+      pp cmdenv
 
       actions.each do |action|
         # Skip any prior steps to reach the startstep
