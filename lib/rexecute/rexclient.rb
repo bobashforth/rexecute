@@ -178,7 +178,10 @@ class RexClient < RexMessage
 
         command = "#{prefix} '#{action.command}'"
 
-        exec_command = process_rexvars(command, cmdenv)
+        # Get bash to translate shell variables using cmdenv before executing
+        io = popen(cmdenv, ["bash", "-c", "echo #{command}"])
+        exec_command = io.read
+        io.close
 
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{exec_command}\""
@@ -227,16 +230,5 @@ class RexClient < RexMessage
     return retstatus
 
   end
-
-  def process_rexvars(command, cmdenv)
-    exec_command = ""
-    cmdenv.each do | key, value |
-      value = "#{cmdenv['#{key}']}"
-      puts "Replacing macro \##{key}\# with value #{value}"
-      exec_command = command.gsub("/\##{key}\#/", "#{value}")
-    end
-    return exec_command
-  end
-
 end
 
