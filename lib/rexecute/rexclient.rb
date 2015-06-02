@@ -179,7 +179,7 @@ class RexClient < RexMessage
         command = "#{prefix} '#{action.command}'"
 
         # Get bash to translate shell variables using cmdenv before executing
-        io = popen(cmdenv, ["bash", "-c", "echo #{command}"])
+        io = IO.popen(cmdenv, ["bash", "-c", "echo #{command}"])
         exec_command = io.read
         io.close
 
