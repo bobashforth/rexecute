@@ -182,7 +182,7 @@ class RexClient < RexMessage
 
         # Get bash to translate shell variables using cmdenv before executing
         io = IO.popen([cmdenv, "sh", "-c", "echo \"#{command}\""])
-        exec_command = io.read.chomp
+        exec_command = io.read
         io.close
         puts "processed command is #{exec_command}"
 
