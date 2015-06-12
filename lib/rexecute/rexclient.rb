@@ -178,13 +178,14 @@ class RexClient < RexMessage
         next if action.stepnum.to_i < startstep.to_i
 
         command = "#{prefix} '#{action.command}'"
-        puts "raw command is #{command}"
+        puts "raw command is \"#{command}\""
 
         # Get bash to translate shell variables using cmdenv before executing
         io = IO.popen([cmdenv, "sh", "-c", "echo \"#{command}\""])
         exec_command = io.read
         io.close
-        puts "processed command is #{exec_command}"
+        pp exec_command
+        #puts "processed command is #{exec_command}"
 
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{exec_command}\""
