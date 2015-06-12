@@ -181,12 +181,16 @@ class RexClient < RexMessage
         puts "raw command is \"#{command}\""
 
         # Get bash to translate shell variables using cmdenv before executing
-        io = IO.popen([cmdenv, "sh", "-c", "echo \"#{command}\""])
-        puts "After IO.popen call"
-        exec_command = io.read
-        io.close
-        pp exec_command
-        #puts "processed command is #{exec_command}"
+        begin
+          io = IO.popen([cmdenv, "sh", "-c", "echo \"#{command}\""])
+          puts "After IO.popen call"
+          exec_command = io.read
+          io.close
+          puts "processed command is #{exec_command}"
+        rescue => e
+          puts "Error in translating shell variables, exception information follows:"
+          pp e
+        end
 
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{exec_command}\""
