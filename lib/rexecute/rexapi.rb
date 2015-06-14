@@ -78,7 +78,6 @@ class RexApi < RexMessage
 				puts "Loaded manfile #{manroot}/#{manfile}, content follows"
 				pp manifest
 
-				t = Time.now()
 				if manifest.manenv.nil?
 					manenv = Hash.new
 					manifest.manenv = manenv
