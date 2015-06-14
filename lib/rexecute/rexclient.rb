@@ -182,7 +182,7 @@ class RexClient < RexMessage
 
         # Get bash to translate shell variables using cmdenv before executing
         begin
-          io = IO.popen(["#{cmdenv}", "sh", "-c", "echo \"#{command}\"", :err=>[:child, :out]])
+          io = IO.popen([cmdenv, "sh", "-c", "echo \"#{command}\"", :err=>[:child, :out]])
           puts "After IO.popen call"
           exec_command = io.read
           io.close
@@ -192,6 +192,8 @@ class RexClient < RexMessage
           pp e
         end
 
+        return :success
+        
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{exec_command}\""
 
