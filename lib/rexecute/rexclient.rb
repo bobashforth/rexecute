@@ -200,7 +200,7 @@ class RexClient < RexMessage
         #end
 
         exec_command = ""
-        outstr, status = Open3.capture2e(cmdenv, "echo#{command}")
+        outstr, status = Open3.capture2e(cmdenv, "echo #{command}")
         exec_commnand = outstr.chomp
 
         #exec_command = ""
