@@ -179,16 +179,12 @@ class RexClient < RexMessage
         # Skip any prior steps to reach the startstep
         next if action.stepnum.to_i < startstep.to_i
 
-        command = "#{prefix} '#{action.command}'"
-        puts "raw command is \"#{command}\""
+        precommand = "#{action.command}"
+        puts "precommand is \"#{command}\""
 
-        cmdenv['EXEC_DATE'] = '2015_06_15'
         exec_command = ""
-        puts "Checkpoint one"
-        outstr, status = Open3.capture2e(cmdenv, "echo #{command}")
-        puts "Checkpoint two"
-        exec_commnand = outstr.chomp
-        puts "Checkpoint three"
+        outstr, status = Open3.capture2e(cmdenv, "echo #{precommand}")
+        exec_commnand = "#{prefix} \'#{outstr.chomp}\'"
 
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{exec_command}\""
