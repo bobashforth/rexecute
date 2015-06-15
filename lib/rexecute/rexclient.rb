@@ -198,9 +198,13 @@ class RexClient < RexMessage
           ENV['key'] = value
         end
         exec_command = ""
-        io = IO.popen([cmdenv, "/bin/bash -c /bin/echo #{command}"], mode="r")
-        exec_command = io.read.chomp
-        io.close
+        io = IO.popen([cmdenv, "/bin/bash"], mode="r+") do |io|
+          io.write("echo #{command}")
+          exec_command = io.read.chomp
+          io.close
+        end
+        #exec_command = io.read.chomp
+        #io.close
 
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{exec_command}\""
