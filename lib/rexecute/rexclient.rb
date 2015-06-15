@@ -7,6 +7,7 @@ require 'socket'
 require 'json'
 require 'yaml'
 require 'pp'
+require 'open3'
 
 class RexClient < RexMessage
 
