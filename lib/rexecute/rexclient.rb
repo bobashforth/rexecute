@@ -159,17 +159,16 @@ class RexClient < RexMessage
     end
 
     user = nil
-    if @manifest.manenv.has_key?("EXEC_USER")
-      user = @manifest.manenv["EXEC_USER"]
-      #prefix = "sudo su -l #{user} -c "
-      prefix = "sudo su -c "
-      cmdenv['EXEC_USER'] = "#{user}"
-    else
-      prefix = ""
-    end
-
     begin
       cmdenv = @manifest.manenv
+      if cmdenv.has_key?("EXEC_USER")
+        user = cmdenv["EXEC_USER"]
+        prefix = "sudo su -l #{user} -c "
+        #prefix = "sudo su -c "
+      else
+        prefix = ""
+      end
+
       puts "Contents of command env follow:"
       puts "cmdenv.inspect = #{cmdenv.inspect}"
       puts "cmdenv.class = #{cmdenv.class}"
