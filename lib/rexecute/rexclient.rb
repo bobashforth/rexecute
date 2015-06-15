@@ -163,6 +163,7 @@ class RexClient < RexMessage
       user = @manifest.manenv["EXEC_USER"]
       #prefix = "sudo su -l #{user} -c "
       prefix = "sudo su -c "
+      cmdenv['EXEC_USER'] = "#{user}"
     else
       prefix = ""
     end
