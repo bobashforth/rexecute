@@ -13,6 +13,7 @@ class RexClient < RexMessage
   attr_accessor :session_id
 
   def initialize( serverhost, sessionid, taskname )
+
     @sessionid = sessionid
     port = RexSettings::SERVERPORT
     @logger = Logger.new('/var/log/rex/rexclient.log')
@@ -180,24 +181,26 @@ class RexClient < RexMessage
         command = "#{prefix} '#{action.command}'"
         puts "raw command is \"#{command}\""
 
-        # Get bash to translate shell variables using cmdenv before executing
-        exec_command = command
-        exec_date = cmdenv['EXEC_DATE']
-        tar = cmdenv['TAR']
-        release_name = cmdenv['RELEASE_NAME']
-        #begin
-        #  io = IO.popen("echo #{command}")
-        #  exec_command = io.read
-        #  io.close
-        #  puts "Processed command is #{exec_command}"
-        #rescue => e
-        #  puts "Error in translating shell variables, exception information follows:"
-        #  pp e
+        # Put appropriate values into publicly available rex variables (to ruby they are constants)
+        #EXEC_DATE.replace cmdenv['EXEC_DATE']
+        #TAR.replace  cmdenv['TAR']
+        #RELEASE_NAME.replace cmdenv['RELEASE_NAME']
+
+        # Also capture all values which appear in cmdenv
+        #cmdenv.each do |key, value|
+        #  key.upcase = "#{value}"
         #end
 
-        # Temporarily keep going regardless of status, to see the results of all commands
-        #execstatus = 0
-        #break
+        # Translate any occurrences of these variables in the command line
+        #exec_command = sprintf "%s" "#{command}"
+        #pp exec_command
+        cmdenv.each do |value, key|
+          ENV['key'] = value
+        end
+        exec_command = ""
+        io = IO.popen("echo #{command}")
+        exec_command = io.read.chomp
+        io.close
 
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{exec_command}\""
