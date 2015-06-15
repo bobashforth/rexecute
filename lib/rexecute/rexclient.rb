@@ -200,13 +200,14 @@ class RexClient < RexMessage
         #end
 
         exec_command = ""
-        Open3.popen3(cmdenv, "bash") { |stdin, stdout, stderr|
+        Open3.popen3(cmdenv, "/bin/bash") do |stdin, stdout, stderr|
           stdin.write("echo #{command}")
-          stdin.close
           exec_command = stdout.readline
+          stdout.each_line { |line| puts line }
+          stdin.close
           stdout.close
           stderr.close
-        }
+        end
 
         #exec_command = ""
         #io = IO.popen([cmdenv, "echo #{command}"])
