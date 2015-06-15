@@ -202,6 +202,7 @@ class RexClient < RexMessage
         exec_command = ""
         Open3.popen3(cmdenv, "/bin/bash") do |stdin, stdout, stderr|
           stdin.write("echo #{command}")
+          stdin.write("exit")
           exec_command = stdout.readline
           stdout.each_line { |line| puts line }
           stdin.close
