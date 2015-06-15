@@ -198,7 +198,7 @@ class RexClient < RexMessage
           ENV['key'] = value
         end
         exec_command = ""
-        io = IO.popen(cmdenv, "/bin/bash -c /bin/echo #{command}", "r")
+        io = IO.popen([cmdenv, "/bin/bash -c /bin/echo #{command}"], mode="r")
         exec_command = io.read.chomp
         io.close
 
