@@ -182,7 +182,7 @@ class RexClient < RexMessage
 
         # Get bash to translate shell variables using cmdenv before executing
         exec_command = command
-        exec_date cmdenv['EXEC_DATE']
+        exec_date = cmdenv['EXEC_DATE']
         tar = cmdenv['TAR']
         release_name = cmdenv['RELEASE_NAME']
         #begin
