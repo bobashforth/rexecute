@@ -182,6 +182,7 @@ class RexClient < RexMessage
         command = "#{prefix} '#{action.command}'"
         puts "raw command is \"#{command}\""
 
+        cmdenv['EXEC_DATE'] = '2015_06_15'
         exec_command = ""
         puts "Checkpoint one"
         outstr, status = Open3.capture2e(cmdenv, "echo #{command}")
