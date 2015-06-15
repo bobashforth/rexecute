@@ -181,19 +181,19 @@ class RexClient < RexMessage
         puts "raw command is \"#{command}\""
 
         # Get bash to translate shell variables using cmdenv before executing
-        exec_command = ""
-        ENV['EXEC_DATE'] = cmdenv['EXEC_DATE']
-        ENV['TAR'] = cmdenv['TAR']
-        ENV['RELEASE_NAME'] = cmdenv['RELEASE_NAME']
-        begin
-          io = IO.popen("echo #{command}")
-          exec_command = io.read
-          io.close
-          puts "Processed command is #{exec_command}"
-        rescue => e
-          puts "Error in translating shell variables, exception information follows:"
-          pp e
-        end
+        exec_command = command
+        EXEC_DATE = cmdenv['EXEC_DATE']
+        TAR = cmdenv['TAR']
+        RELEASE_NAME = cmdenv['RELEASE_NAME']
+        #begin
+        #  io = IO.popen("echo #{command}")
+        #  exec_command = io.read
+        #  io.close
+        #  puts "Processed command is #{exec_command}"
+        #rescue => e
+        #  puts "Error in translating shell variables, exception information follows:"
+        #  pp e
+        #end
 
         # Temporarily keep going regardless of status, to see the results of all commands
         #execstatus = 0
