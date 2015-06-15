@@ -198,6 +198,10 @@ class RexClient < RexMessage
           ENV['key'] = value
         end
 
+        io = IO.popen("env")
+        p io.read
+        io.close
+
         exec_command = ""
         io = IO.popen("echo #{command}")
         exec_command = io.read.chomp
