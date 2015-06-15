@@ -182,7 +182,9 @@ class RexClient < RexMessage
 
         # Get bash to translate shell variables using cmdenv before executing
         exec_command = ""
-        ENV = cmdenv.merge(ENV)
+        ENV['EXEC_DATE'] = cmdenv['EXEC_DATE']
+        ENV['TAR'] = cmdenv['TAR']
+        ENV['RELEASE_NAME'] = cmdenv['RELEASE_NAME']
         begin
           io = IO.popen("echo #{command}")
           exec_command = io.read
