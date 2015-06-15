@@ -192,8 +192,10 @@ class RexClient < RexMessage
           pp e
         end
 
-        return :success
-        
+        # Temporarily keep going regardless of status, to see the results of all commands
+        execstatus = 0
+        break
+
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{exec_command}\""
 
