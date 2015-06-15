@@ -194,18 +194,24 @@ class RexClient < RexMessage
         # Translate any occurrences of these variables in the command line
         #exec_command = sprintf "%s" "#{command}"
         #pp exec_command
-        cmdenv.each do |value, key|
-          ENV['key'] = value
-        end
-
-        io = IO.popen("env")
-        p io.read
-        io.close
+        #cmdenv.each do |value, key|
+        #  ENV['key'] = value
+        #end
 
         exec_command = ""
-        io = IO.popen("echo #{command}")
-        exec_command = io.read.chomp
-        io.close
+        IO.popen("bash", mode="r+") do |io|
+          cmdenv.each do |key, value|
+            io.write("#{key.upcase}=#{value}")
+          end
+          io.write("echo #{command}")
+          exec_command = io.read
+          io.close
+        end
+
+        #exec_command = ""
+        #io = IO.popen([cmdenv, "echo #{command}"])
+        #exec_command = io.read.chomp
+        #io.close
 
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{exec_command}\""
