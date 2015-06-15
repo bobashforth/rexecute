@@ -182,31 +182,12 @@ class RexClient < RexMessage
         command = "#{prefix} '#{action.command}'"
         puts "raw command is \"#{command}\""
 
-        # Put appropriate values into publicly available rex variables (to ruby they are constants)
-        #EXEC_DATE.replace cmdenv['EXEC_DATE']
-        #TAR.replace  cmdenv['TAR']
-        #RELEASE_NAME.replace cmdenv['RELEASE_NAME']
-
-        # Also capture all values which appear in cmdenv
-        #cmdenv.each do |key, value|
-        #  key.upcase = "#{value}"
-        #end
-
-        # Translate any occurrences of these variables in the command line
-        #exec_command = sprintf "%s" "#{command}"
-        #pp exec_command
-        #cmdenv.each do |value, key|
-        #  ENV['key'] = value
-        #end
-
         exec_command = ""
+        puts "Checkpoint one"
         outstr, status = Open3.capture2e(cmdenv, "echo #{command}")
+        puts "Checkpoint two"
         exec_commnand = outstr.chomp
-
-        #exec_command = ""
-        #io = IO.popen([cmdenv, "echo #{command}"])
-        #exec_command = io.read.chomp
-        #io.close
+        puts "Checkpoint three"
 
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{exec_command}\""
