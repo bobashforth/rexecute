@@ -180,11 +180,11 @@ class RexClient < RexMessage
         next if action.stepnum.to_i < startstep.to_i
 
         precommand = "#{action.command}"
-        puts "precommand is \"#{command}\""
+        puts "precommand is \"#{precommand}\""
 
         exec_command = ""
         outstr, status = Open3.capture2e(cmdenv, "echo #{precommand}")
-        exec_commnand = "#{prefix} \'#{outstr.chomp}\'"
+        exec_command = "#{prefix} \'#{outstr.chomp}\'"
 
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
         puts "command to be executed is \"#{exec_command}\""
