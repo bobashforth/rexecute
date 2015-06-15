@@ -199,14 +199,13 @@ class RexClient < RexMessage
         #end
 
         exec_command = ""
-        IO.popen("bash", mode="r+") do |io|
-          cmdenv.each do |key, value|
-            io.write("#{key.upcase}=#{value}")
-          end
-          io.write("echo #{command}")
-          exec_command = io.read
-          io.close
-        end
+        Open3.popen3(cmdenv, "bash") { |stdin, stdout, stderr|
+          stdin.write("echo #{command}")
+          stdin.close
+          exec_command = stdout.readline
+          stdout.close
+          stderr.close
+        }
 
         #exec_command = ""
         #io = IO.popen([cmdenv, "echo #{command}"])
