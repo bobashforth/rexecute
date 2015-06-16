@@ -170,9 +170,6 @@ class RexClient < RexMessage
         prefix = ""
       end
 
-      # Generate the EXEC_DATE string now from EXECTIME. Attempts to pass EXEC_DATE consistently
-      # resulted in loss of the underscores at some point in the YAML generate/dump process.
-      cmdenv['EXEC_DATE'] = cmdenv['EXECTIME'].strftime("%Y_%m_%d")
       puts "Contents of command env follow:"
       puts "cmdenv.inspect = #{cmdenv.inspect}"
       puts "cmdenv.class = #{cmdenv.class}"
