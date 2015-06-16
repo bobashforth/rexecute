@@ -108,9 +108,10 @@ class RexMessage
 
     if payload.nil?
       jmsg = msg.to_json
-      logger.info("rexmessage, jmsg = #{jmsg}")
     else
       jmsg = msg.merge( payload ).to_json
+      @logger.info("rexmessage, payload = #{payload}")
+      @logger.info("rexmessage, jmsg = #{jmsg}")
     end
 
     @logger.info("jmsg: #{jmsg}")
