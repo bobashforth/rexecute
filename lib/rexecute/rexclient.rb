@@ -171,8 +171,8 @@ class RexClient < RexMessage
       end
 
       puts "Contents of command env follow:"
-      puts "cmdenv.inspect = #{cmdenv.inspect}"
-      puts "cmdenv.class = #{cmdenv.class}"
+      #puts "cmdenv.inspect = #{cmdenv.inspect}"
+      #puts "cmdenv.class = #{cmdenv.class}"
       pp cmdenv
 
       actions.each do |action|

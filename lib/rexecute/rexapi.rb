@@ -85,6 +85,7 @@ class RexApi < RexMessage
 
 				if !flowargs.nil?
 					begin
+						pp flowargs
 						flowenv = YAML::load(flowargs)
 						puts "flowenv.class = #{flowenv.class}"
 						if flowenv.nil?
@@ -99,9 +100,9 @@ class RexApi < RexMessage
 					end
 				end
 
-				File.open( 'protomanifest.yaml', 'w' ) do |file|
-  				YAML.dump(manifest, file)
-				end
+				#File.open( 'protomanifest.yaml', 'w' ) do |file|
+  			#	YAML.dump(manifest, file)
+				#end
 
 				mandump = YAML::dump(manifest)
 
