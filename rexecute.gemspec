@@ -22,5 +22,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake", "~> 0"
   spec.add_runtime_dependency "daemons", '~> 1.2', '>= 1.2.2'
-  spec.add_runtime_dependency "json_pure", '~> 1.8', '>= 1.8.1'
 end
