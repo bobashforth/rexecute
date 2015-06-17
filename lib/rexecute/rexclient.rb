@@ -183,7 +183,7 @@ class RexClient < RexMessage
         puts "precommand is \"#{precommand}\""
 
         exec_command = ""
-        outstr, status = Open3.capture2e(cmdenv, "echo #{precommand}")
+        outstr, status = Open3.capture2e(cmdenv, "echo \"#{precommand}\"")
         exec_command = "#{prefix} \'#{outstr.chomp}\'"
 
         puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
