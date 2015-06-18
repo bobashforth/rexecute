@@ -41,7 +41,7 @@ class RexClient < RexMessage
       # The server will be expecting the sessionid as part of the
       # initial handshake. If this sessionid has not been registered
       # with the server, the connection will be dropped.
-      @server.@logger.info( "TaskClient:#{@sessionid}" )
+      @server.puts( "TaskClient:#{@sessionid}" )
 
       # Sending status back is a response to the rex_init command which spawned
       # this client session
@@ -170,7 +170,7 @@ class RexClient < RexMessage
         prefix = ""
       end
 
-      @logger.info "Contents of command env follow:"
+      @logger.info "Content of command env follows:"
       #@logger.info "cmdenv.inspect = #{cmdenv.inspect}"
       #@logger.info "cmdenv.class = #{cmdenv.class}"
       pp cmdenv
