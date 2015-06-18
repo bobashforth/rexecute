@@ -146,6 +146,8 @@ class RexApi < RexMessage
 		#status = read_task_status(@server, @conversationid)
 		status = get_task_status(@server, @conversationid)
 
+		@logger.info("Received task completion status #{status}, killing conversation #{@conversationid}")
+
 		# Clean up both controller and client sessionid entries, regardless of completion status.
 		rex_kill(@conversationid)
 
