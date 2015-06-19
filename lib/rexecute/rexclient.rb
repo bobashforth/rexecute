@@ -71,9 +71,9 @@ class RexClient < RexMessage
 
   def dispatch( msg )
 
-    @logger.info("In RexTaskClient::dispatch")
+    puts "In RexTaskClient::dispatch"
     if msg.nil?
-      @logger.info("Empty or nil message, exiting")
+      puts "Empty or nil message, exiting"
       exit
     end
 
@@ -83,7 +83,7 @@ class RexClient < RexMessage
 
     case mtype
     when :set_manifest
-      @logger.info("RexClient, in :set_manifest case, msg = #{msg}")
+      puts "RexClient, in :set_manifest case, msg = #{msg}"
       if not msg["manifest"].nil?
         mandump = msg["manifest"]
         #@manifest = Marshal.load( mandump )
@@ -92,10 +92,10 @@ class RexClient < RexMessage
 
         if @manifest.nil?
           @task_status = :failure
-          @logger.info("RexClient: set_manifest failed")
+          puts "RexClient: set_manifest failed"
         else
           @task_status = :success
-          @logger.info("RexClient: set_manifest succeeded")
+          puts "RexClient: set_manifest succeeded"
         end
         status = rex_send_status( @server, @sessionid, "#{status}" )
       else           
@@ -112,7 +112,7 @@ class RexClient < RexMessage
       rex_send_status( @server, @sessionid, @task_status )
 
     when :exec_start
-      @logger.info("in case :exec_start")
+      puts "in case :exec_start"
       @task_status = :success
       @task_state = :running
 
@@ -122,7 +122,7 @@ class RexClient < RexMessage
 
 
     when :exec_resume
-      @logger.info("in case :exec_resume")
+      puts "in case :exec_resume"
       @task_status = :success
       @task_state = :running
       startstep = msg["startstep"]
@@ -132,15 +132,15 @@ class RexClient < RexMessage
       end
 
     when :exec_kill
-      @logger.info("Received kill message, terminating client session")
+      puts "Received kill message, terminating client session"
       exit 0
 
     when :status_ack
-      @logger.info("in case :status_ack")
+      puts "in case :status_ack"
       raise "Invalid message for task client"
 
     else
-      @logger.info("Error, invalid message type")
+      puts "Error, invalid message type"
       status = :failure
 
     end
@@ -155,7 +155,7 @@ class RexClient < RexMessage
     execstatus = 1
     retstatus = :success
     if startstep.to_i > actions.length.to_i
-      @logger.info("Error, startstep #{startstep} is out of bounds")
+      puts "Error, startstep #{startstep} is out of bounds"
       return :failure
     end
 
@@ -170,9 +170,9 @@ class RexClient < RexMessage
         prefix = ""
       end
 
-      @logger.info("Content of command env follows:")
-      #@logger.info("cmdenv.inspect = #{cmdenv.inspect}")
-      #@logger.info("cmdenv.class = #{cmdenv.class}")
+      puts "Contents of command env follow:"
+      #puts "cmdenv.inspect = #{cmdenv.inspect}"
+      #puts "cmdenv.class = #{cmdenv.class}"
       pp cmdenv
 
       actions.each do |action|
@@ -180,38 +180,38 @@ class RexClient < RexMessage
         next if action.stepnum.to_i < startstep.to_i
 
         precommand = "#{action.command}"
-        @logger.info("precommand is \"#{precommand}\"")
+        puts "precommand is \"#{precommand}\""
 
         exec_command = ""
         outstr, status = Open3.capture2e(cmdenv, "echo \"#{precommand}\"")
-        exec_command = "#{prefix} \"#{outstr.chomp}\""
+        exec_command = "#{prefix} \'#{outstr.chomp}\'"
 
-        @logger.info("Executing stepnum #{action.stepnum}: \"#{action.label}\"")
-        @logger.info("command to be executed is \"#{exec_command}\"")
+        puts "Executing stepnum #{action.stepnum}: \"#{action.label}\""
+        puts "command to be executed is \"#{exec_command}\""
 
         begin
           #pid = spawn(cmdenv, command)
 
           cmd_status = system(exec_command)
-          @logger.info("cmd_status = #{cmd_status}")
+          puts "cmd_status = #{cmd_status}"
           procstatus = $?
           if cmd_status.nil?
-            @logger.info("Error, could not spawn command #{exec_command}")
+            puts "Error, could not spawn command #{exec_command}"
             retstatus = :failure
           else
             execstatus = procstatus.exitstatus
             pid = procstatus.pid
-            @logger.info("execstatus = #{execstatus}, pid = #{pid}")
+            puts "execstatus = #{execstatus}, pid = #{pid}"
             if execstatus != 0
-              @logger.info("Error, failed to spawn command #{exec_command}")
+              puts "Error, failed to spawn command #{exec_command}"
               retstatus = :failure
             end
           end
 
-          @logger.info("Process #{pid}, step #{action.stepnum} completed with status #{execstatus}")
+          puts "Process #{pid}, step #{action.stepnum} completed with status #{execstatus}"
           action.exec_status = execstatus
         rescue => e
-          @logger.info("Encountered exception when spawning command, error follows:")
+          puts "Encountered exception when spawning command, error follows:"
           pp e
           retstatus = :failure
         end
@@ -229,7 +229,7 @@ class RexClient < RexMessage
       retstatus = :failure
     end
 
-    @logger.info("Returning from exec_resume")
+    puts "Returning from exec_resume"
     return retstatus
 
   end

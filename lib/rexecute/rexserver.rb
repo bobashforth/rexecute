@@ -119,22 +119,13 @@ class RexServer < RexMessage
     id = msg["id"]
 
     command = "startrexclient.rb -h #{@serverhost} -s #{sessionid} -t #{taskname}"
-    script_logname = "Job_#{id}.log"
-    wholecommand = "ssh -nf #{clienthost} \'script -f -c \"#{command}\"  #{script_logname}\' &>/dev/null &"
+    wholecommand = "ssh -nf #{clienthost} \'script -f -c \"#{command}\"  Job_#{id}.log\' &>/dev/null &"
     @logger.info( "Command to client is #{wholecommand}" )
 
     status = system( "#{wholecommand}" )
     if status != true
       @logger.error( "Error, could not create new remote client session" )
       return :failure
-    else
-      # Make sure any user can write to the script log file, as sudo'ing to a different user is common
-      chmod_cmd = "ssh -nf #{clienthost} -c \"chmod a+w #{script_logname}\""
-      status = system("#{chmod_cmd}")
-      if status != true
-        logger.error( "Error, could not chmod script logfile" )
-        return :failure
-      end
     end
 
     # If the client is detected, get client status for confirmation, which
