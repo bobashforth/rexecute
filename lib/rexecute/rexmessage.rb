@@ -61,14 +61,19 @@ class RexMessage
   def rex_send_raw( sock, rex_message )
 
     status = :success
-    begin
-      sock.puts( rex_message )
-      #@logger.info( rex_message )
-      @logger.info("rex_send_raw: message sent, #{rex_message}")
-    rescue => e
-      pp e
-      @logger.error( "Error in sending message using socket" )
-      @logger.error( e )
+    if !sock.nil?
+      begin
+        sock.puts( rex_message )
+        #@logger.info( rex_message )
+        @logger.info("rex_send_raw: message sent, #{rex_message}")
+      rescue => e
+        pp e
+        @logger.error( "Error in sending message using socket" )
+        @logger.error( e )
+        status = :failure
+      end
+    else
+      @logger.info("rex_send_raw: nil socket passed")
       status = :failure
     end
 
@@ -133,12 +138,17 @@ class RexMessage
       #pp sid
       @logger.info( "In rex_get_message_raw, sock=#{sock}" )
 
-      msg = sock.gets
-      if !msg.nil?
-        msg = msg.chomp
-        #@logger.info(msg)
+      if !sock.nil?
+        msg = sock.gets
+        if !msg.nil?
+          msg = msg.chomp
+          #@logger.info(msg)
+        else
+          logger.info("rex_get_message_raw: received nil message")
+        end
       else
-        @logger.info("rex_get_message_raw: received nil message")
+        @logger.info("rex_get_message_raw: nil socket passed")
+        msg = nil
       end
 
     rescue => e

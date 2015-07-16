@@ -133,7 +133,8 @@ class RexClient < RexMessage
 
     when :exec_kill
       puts "Received kill message, terminating client session"
-      exit 0
+      @task_state = :completed
+      status = :success
 
     when :status_ack
       puts "in case :status_ack"
