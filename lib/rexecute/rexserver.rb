@@ -191,7 +191,7 @@ class RexServer < RexMessage
       payload["startstep"] = "#{startstep}"
 
       status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_resume, payload )
-      status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )      end
+      status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
 
     when :exec_kill
       # We need to tread carefully here. Wait for the status to return, trusting that
