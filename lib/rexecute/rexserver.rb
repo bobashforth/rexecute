@@ -177,9 +177,7 @@ class RexServer < RexMessage
     when :set_manifest
       @logger.info("in :set_manifest case, msg = #{msg}")
       status = set_manifest( msg )
-      @conversation_mutex.synchronize do
-        status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
-      end
+      status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
 
     when :exec_start
       @logger.info("in :exec_start case, msg = #{msg}")
