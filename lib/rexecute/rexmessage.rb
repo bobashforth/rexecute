@@ -144,7 +144,7 @@ class RexMessage
           msg = msg.chomp
           #@logger.info(msg)
         else
-          logger.info("rex_get_message_raw: received nil message")
+          @logger.info("rex_get_message_raw: received nil message")
         end
       else
         @logger.info("rex_get_message_raw: nil socket passed")
