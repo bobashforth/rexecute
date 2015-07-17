@@ -76,7 +76,7 @@ class RexServer < RexMessage
             @logger.fatal( "Error, sessionid #{sessionid} has not been registered" )
             Thread.kill self
           elsif @clients.has_key?( "#{sid}" )
-            logger.fatal( "This sessionid is already in use" )
+            @logger.fatal( "This sessionid is already in use" )
             Thread.kill self
           else
             @conversation_mutex.synchronize do
@@ -100,9 +100,7 @@ class RexServer < RexMessage
     loop {
       @logger.info("In process_commands, top of loop")
 
-      @conversation_mutex.synchronize do
-        msg = rex_get_message( @controllers["#{sessionid}"] )
-      end
+      msg = rex_get_message( @controllers["#{sessionid}"] )
 
       status = dispatch_command( msg )
       
@@ -135,9 +133,7 @@ class RexServer < RexMessage
     # send this status without need for a request.
     status = rex_wait_for_client( sessionid )
     if status == :success
-      @conversation_mutex.synchronize do
-        status = read_task_status( @clients["#{sessionid}"], sessionid )
-      end
+      status = read_task_status( @clients["#{sessionid}"], sessionid )
     end
 
     return status
@@ -153,14 +149,12 @@ class RexServer < RexMessage
 
     sessionid = msg["sessionid"]
 
-    @conversation_mutex.synchronize do
-      status = rex_send_message( @clients["#{sessionid}"], sessionid, :set_manifest, payload )
-      @logger.info( "rexserver, in set_manifest after sending message")
-      if status != :success
-        @logger.error( "Error in sending :set_manifest message" )
-      else
-        status = read_task_status( @clients["#{sessionid}"], msg )
-      end
+    status = rex_send_message( @clients["#{sessionid}"], sessionid, :set_manifest, payload )
+    @logger.info( "rexserver, in set_manifest after sending message")
+    if status != :success
+      @logger.error( "Error in sending :set_manifest message" )
+    else
+      status = read_task_status( @clients["#{sessionid}"], msg )
     end
 
     return status 
@@ -189,10 +183,8 @@ class RexServer < RexMessage
 
     when :exec_start
       @logger.info("in :exec_start case, msg = #{msg}")
-      @conversation_mutex.synchronize do
-        status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_start )
-        status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
-      end
+      status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_start )
+      status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
 
     when :exec_resume
       @logger.info("in :exec_resume case, msg = #{msg}")
@@ -200,10 +192,8 @@ class RexServer < RexMessage
       payload = Hash.new
       payload["startstep"] = "#{startstep}"
 
-      @conversation_mutex.synchronize do
-        status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_resume, payload )
-        status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
-      end
+      status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_resume, payload )
+      status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )      end
 
     when :exec_kill
       # We need to tread carefully here. Wait for the status to return, trusting that
@@ -252,18 +242,16 @@ class RexServer < RexMessage
 
     status = :success
 
-    @conversation_mutex.synchronize do
-      i = 0
-      until i > 9 or not @clients["#{sessionid}"].nil? do
-        sleep 6
-        i += 1
-      end
+    i = 0
+    until i > 9 or not @clients["#{sessionid}"].nil? do
+      sleep 6
+      i += 1
+    end
 
-      pp @clients["#{sessionid}"]
+    pp @clients["#{sessionid}"]
 
-      if @clients["#{sessionid}"].nil?
-        status = :failure
-      end
+    if @clients["#{sessionid}"].nil?
+      status = :failure
     end
 
     return status.to_sym
