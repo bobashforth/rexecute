@@ -58,6 +58,7 @@ class RexServer < RexMessage
               @logger.fatal( "Error, failed to send status of rex_init to controller")
               @conversation_mutex.synchronize do
                 @controllers.delete("#{sessionid}")
+              end
               Thread.kill self
             end
           else
@@ -82,7 +83,7 @@ class RexServer < RexMessage
             Thread.kill self
           elsif @clients.has_key?( "#{sid}" )
             @logger.fatal( "This sessionid is already in use" )
-           Thread.kill self
+            Thread.kill self
           else
             @conversation_mutex.synchronize do
               @clients["#{sid}"] = client
