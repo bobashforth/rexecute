@@ -56,11 +56,16 @@ class RexServer < RexMessage
             status = rex_send_status( @controllers["#{sessionid}"], sessionid, status )
             if status != :success
               @logger.fatal( "Error, failed to send status of rex_init to controller")
+              @conversation_mutex.synchronize do
+                @controllers.delete("#{sessionid}")
               Thread.kill self
             end
           else
             status = :failure
             @logger.fatal( "Error, initial controller message was not rex_init: #{msg}")
+            @conversation_mutex.synchronize do
+              @controllers.delete("#{sessionid}")
+            end
             Thread.kill self
           end
           if status == :success
@@ -77,7 +82,7 @@ class RexServer < RexMessage
             Thread.kill self
           elsif @clients.has_key?( "#{sid}" )
             @logger.fatal( "This sessionid is already in use" )
-            Thread.kill self
+           Thread.kill self
           else
             @conversation_mutex.synchronize do
               @clients["#{sid}"] = client
@@ -195,22 +200,20 @@ class RexServer < RexMessage
 
     when :exec_kill
       # We need to tread carefully here. Wait for the status to return, trusting that
-      # the client will have committed suppuku as requested.
+      # the client will have committed suppuku as requested. Note that the client socket
+      # may be closed already, so disregard the status value.
+      status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_kill )
+
+      # Now send the status back to the caller, and only then remove the entries
+      # for this conversation from @controllers and @clients hashes.
+      status = rex_send_status( @controllers["#{sessionid}"], sessionid,  :success )
       @conversation_mutex.synchronize do
-
-        status = rex_send_message( @clients["#{sessionid}"], sessionid, :exec_kill )
-
-        # Now send the status back to the caller, and only then remove the entries
-        # for this conversation from @controllers and @clients hashes.
-        status = rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
         begin
           @logger.info("Deleting conversation #{sessionid}")
           @clients.delete("#{sessionid}")
           @controllers.delete("#{sessionid}")
           @logger.info("@clients hash count: #{@clients.length}")
-          pp @clients
           @logger.info("@controllers hash count: #{@controllers.length}")
-          pp @controllers
         rescue => e
           @logger.info("Error deleting conversation hash entries")
           pp e
@@ -219,15 +222,11 @@ class RexServer < RexMessage
 
     when :status_ack
       status = msg["status"].to_sym
-      @conversation_mutex.synchronize do      
-        rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
-      end
+      rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
 
     when :get_task_status
-      @conversation_mutex.synchronize do
-        status = get_task_status( @clients["#{sessionid}"], sessionid )
-        rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
-      end
+      status = get_task_status( @clients["#{sessionid}"], sessionid )
+      rex_send_status( @controllers["#{sessionid}"], sessionid,  status )
 
     else
       @logger.error( "Error, invalid message type \"#{mtype}\"" )
