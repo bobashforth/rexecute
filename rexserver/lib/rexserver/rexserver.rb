@@ -5,9 +5,6 @@ require 'logger'
 
 require 'rexcore'
 
-include RexCore
-include RexSettings
-
 class RexServer < RexMessage
 
   def initialize( port=RexSettings::SERVERPORT )
