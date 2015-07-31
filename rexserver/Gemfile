@@ -1,3 +1,4 @@
+source 'http:/sjcm1.marketo.org:81'
 source 'https://rubygems.org'
 ruby '1.9.3'
 
