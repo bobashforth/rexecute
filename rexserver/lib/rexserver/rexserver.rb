@@ -5,7 +5,7 @@ require 'logger'
 
 require 'rexcore'
 
-include RexCore::RexMessage
+include RexCore
 
 class RexServer < RexMessage
 
