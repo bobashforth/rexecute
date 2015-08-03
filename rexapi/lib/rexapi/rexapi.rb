@@ -5,6 +5,8 @@ require 'yaml'
 
 require 'rexcore'
 
+include RexCore
+
 class RexAPI < RexMessage
 
 	def initialize( serverhost=nil )

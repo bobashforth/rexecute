@@ -7,6 +7,8 @@ require 'yaml'
 require 'pp'
 require 'open3'
 
+include RexCore
+
 class RexClient < RexMessage
 
   attr_accessor :session_id
