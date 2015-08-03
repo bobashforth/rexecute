@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #
-require_relative '../lib/rexecute/rexclient'
+require_relative '../lib/rexclient'
 
 require 'optparse'
 
