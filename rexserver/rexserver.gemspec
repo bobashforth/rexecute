@@ -7,7 +7,7 @@ require 'rexserver/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "rexserver"
-  spec.version       = Rexserver::VERSION
+  spec.version       = RexServer::VERSION
   spec.authors       = ["Bob Ashforth"]
   spec.email         = ["rashforth@marketo.com"]
   spec.summary       = %q{Rexecute is a complete framework for remote execution of complex tasks in a linux network.}
