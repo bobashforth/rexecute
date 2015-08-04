@@ -5,7 +5,7 @@ require 'yaml'
 require 'optparse'
 require 'pp'
 
-require_relative '../lib/rexecute/remoteexecute'
+require 'rexcore'
 
 # Hash for options passed in
 options = {}
@@ -35,7 +35,7 @@ if manfile.nil? or flowman.nil?
   abort "Error, manifest name and flow manifest name must be provided"
 end
 
-manifest = RemoteExecute::RexManifest.new()
+manifest = RexCore::RexManifest.new()
 
 if manifest.nil?
 	puts "Error creating flow manifest object, exiting."

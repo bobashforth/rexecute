@@ -6,6 +6,6 @@
 
 
 require 'rexcore/rexmessage'
-require 'rexcore/remoteexecute'
+require 'rexcore/rexcore'
 require 'rexcore/rexsettings'
 require 'rexcore/version'
