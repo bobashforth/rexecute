@@ -1,17 +1,19 @@
 #!/usr/bin/env ruby
 #
-require_relative '../lib/rexapi/rexapi'
+require 'rexapi'
 
 require 'optparse'
 require 'yaml'
 require 'pp'
+
+include RexApi
 
 # Hash for options passed in
 options = {}
 
 optparse = OptionParser.new do |opts|
 
-  opts.banner = "Usage: ruby rextaskclient.rb [OPTIONS]"
+  opts.banner = "Usage: ruby execremotetask.rb [OPTIONS]"
   opts.separator ""
   opts.separator "Specific options"
 
