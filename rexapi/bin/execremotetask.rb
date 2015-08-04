@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #
-require_relative '../lib/rexecute/rexapi'
+require 'rexapi'
 
 require 'optparse'
 require 'yaml'
