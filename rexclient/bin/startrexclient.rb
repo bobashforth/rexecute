@@ -4,6 +4,8 @@ require 'rexclient'
 
 require 'optparse'
 
+Include RexClient
+
 # Hash for options passed in
 options = {}
 
