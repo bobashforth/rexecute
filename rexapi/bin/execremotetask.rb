@@ -6,7 +6,7 @@ require 'optparse'
 require 'yaml'
 require 'pp'
 
-include RexApi
+include RexAPI
 
 # Hash for options passed in
 options = {}
@@ -66,7 +66,7 @@ puts "Starting remote execution of task #{taskname} on server #{host}"
 `env`
 
 # Get a REX API object and trigger the manifest execution
-maestro = RexApi::RexApi.new("#{controller}")
+maestro = RexAPI::RexAPI.new("#{controller}")
 
 puts "API created, calling rex_init"
 

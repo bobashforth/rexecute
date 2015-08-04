@@ -26,12 +26,12 @@ module RexAPI
 
 			@server = TCPSocket.new( @serverhost, @serverport )
 			if @server.nil?
-				@logger.fatal( "Failed to create RexApi session" )
+				@logger.fatal( "Failed to create RexAPI session" )
 			else
 				# Tell the server that we're a controller, and include the conversationid
 				@server.puts( "#{controllersid}:#{@conversationid}")
 
-				@logger.info("RexApi instance created successfully")
+				@logger.info("RexAPI instance created successfully")
 			end
 		end
 
