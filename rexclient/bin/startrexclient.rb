@@ -39,6 +39,6 @@ if host.nil? or sessionid.nil?
   abort "Error, host and sessionid must be provided"
 end
 
-rex_task_client = RexClient.new( host, sessionid, taskname )
+rex_task_client = RexClient::RexClient.new( host, sessionid, taskname )
 
 
