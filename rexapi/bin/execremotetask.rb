@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #
-require 'rexapi'
+require_relative '../lib/rexapi/rexapi'
 
 require 'optparse'
 require 'yaml'
@@ -64,7 +64,7 @@ puts "Starting remote execution of task #{taskname} on server #{host}"
 `env`
 
 # Get a REX API object and trigger the manifest execution
-maestro = RexApi.new("#{controller}")
+maestro = RexApi::RexApi.new("#{controller}")
 
 puts "API created, calling rex_init"
 
