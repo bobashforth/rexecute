@@ -66,7 +66,7 @@ puts "Starting remote execution of task #{taskname} on server #{host}"
 `env`
 
 # Get a REX API object and trigger the manifest execution
-maestro = RexAPI::RexAPI.new("#{controller}")
+maestro = RexAPI::RexAPI.new("#{taskname}", "#{controller}")
 
 puts "API created, calling rex_init"
 

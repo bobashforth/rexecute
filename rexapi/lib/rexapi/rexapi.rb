@@ -11,12 +11,15 @@ module RexAPI
 
 	class RexAPI < RexMessage
 
-		def initialize( serverhost=nil )
+		def initialize( taskname, serverhost=nil )
 
+			if taskname.nil?
+				taskname = "anon"
+			end
 			@serverhost = serverhost
 			@serverport = RexSettings::SERVERPORT
 			controllersid = RexSettings::CONTROLLERSID
-			@logger = Logger.new('/var/log/rex/rexapi.log')
+			@logger = Logger.new("/var/log/rex/rexapi-#{taskname}.log")
 			@logger.level = Logger::INFO
 			@logger.sev_threshold = Logger::INFO
 			@conversationid = SecureRandom.uuid()
