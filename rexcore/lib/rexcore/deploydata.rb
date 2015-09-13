@@ -759,6 +759,7 @@ module DeployData
 
 					thispod.podservers = this_serverhash
 				end
+			end
 
 			when 'sn'
 				app = 'mlm'
