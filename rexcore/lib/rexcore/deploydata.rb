@@ -308,7 +308,6 @@ module DeployData
 
 					thispod.podservers = this_serverhash
 				end
-			end
 
 			when 'lon'
 				app = 'mlm'
@@ -530,7 +529,6 @@ module DeployData
 
 					thispod.podservers = this_serverhash
 				end
-			end
 
 			when 'sj'
 				app = 'mlm'
@@ -761,7 +759,6 @@ module DeployData
 
 					thispod.podservers = this_serverhash
 				end
-			end
 
 			when 'sn'
 				app = 'mlm'
