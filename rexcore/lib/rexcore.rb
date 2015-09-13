@@ -4,7 +4,7 @@
 # September 2014 Bob Ashforth, RelEng
 #
 
-
+require 'rexcore/deploydata'
 require 'rexcore/rexmessage'
 require 'rexcore/rexcore'
 require 'rexcore/rexsettings'
