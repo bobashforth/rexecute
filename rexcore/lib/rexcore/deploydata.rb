@@ -997,7 +997,7 @@ module DeployData
 			@podname = podname
 			@podapp = app
 			@podservers = Hash.new
-			db.dbpods[podname] = self
+			db.dbpods["#{podname}"] = self
 		end
 	end
 
@@ -1017,7 +1017,7 @@ module DeployData
 			@podservername = podservername
 			@podservertype = podservertype
 			@is_primary = is_primary
-			db.dbpodservers[podservername] = self
+			db.dbpodservers["#{podservername}"] = self
 		end
 	end
 end
