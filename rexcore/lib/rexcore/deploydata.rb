@@ -114,6 +114,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
+						puts "DeployDatacenter:Initialize, dcname=#{dcname}, p=#{p}, app=#{app}, this_servername=#{this_servername}, thie_servertype=#{this_servertype}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -1059,6 +1060,8 @@ module DeployData
 			@podservername = podservername
 			@podservertype = podservertype
 			@is_primary = is_primary
+			puts "db.podservers:"
+			pp db.podservers
 			db.dbpodservers["#{podservername}"] = self
 		end
 	end
