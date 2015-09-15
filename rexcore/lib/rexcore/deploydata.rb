@@ -100,7 +100,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						db.dbpodservers = this_server
 						this_serverhash["#{this_servername}"] = this_server
@@ -113,7 +113,7 @@ module DeployData
 					servicegroup = ['1', '2', '3', '4', '5', '6']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -136,7 +136,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -148,7 +148,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -171,7 +171,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -194,7 +194,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -217,7 +217,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -240,7 +240,7 @@ module DeployData
 					servicegroup = ['1', '2', '3', '4']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -263,7 +263,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -286,7 +286,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -309,7 +309,7 @@ module DeployData
 					servicegroup = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -332,7 +332,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -344,7 +344,7 @@ module DeployData
 					servicegroup = ['1', '2', '3', '4', '5', '6']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -367,7 +367,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -379,7 +379,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -402,7 +402,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -425,7 +425,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -448,7 +448,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						db.dbpodservers = this_server
 						this_serverhash["#{this_servername}"] = this_server
@@ -472,7 +472,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -495,7 +495,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -518,7 +518,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -541,7 +541,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -566,7 +566,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -578,7 +578,7 @@ module DeployData
 					servicegroup = ['1', '2', '3', '4', '5', '6']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -608,7 +608,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -620,7 +620,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -643,7 +643,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -666,7 +666,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -689,7 +689,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -712,7 +712,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -735,7 +735,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -758,7 +758,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -781,7 +781,7 @@ module DeployData
 					servicegroup = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -805,7 +805,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -817,7 +817,7 @@ module DeployData
 					servicegroup = ['1', '2', '3', '4', '5', '6']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -840,7 +840,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -852,7 +852,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -875,7 +875,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -898,7 +898,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -921,7 +921,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -944,7 +944,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -967,7 +967,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -990,7 +990,7 @@ module DeployData
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -1013,7 +1013,7 @@ module DeployData
 					servicegroup = ['01', '02']
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = i
+						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
 						this_serverhash["#{this_servername}"] = this_server
 						db.dbpodservers = this_server
@@ -1033,6 +1033,7 @@ module DeployData
 		attr_accessor :podservers
 
 		def initialize(db, dcname, podname, app)
+			puts "DeployPod: dcname=#{dcname}, podname=#{podname}, app=#{app}"
 			@dcname = dcname
 			@podname = podname
 			@podapp = app
@@ -1050,8 +1051,9 @@ module DeployData
 		attr_accessor :podservertype
 		attr_accessor :is_primary
 
-		def initialize(db, datacenter, podname, podapp, podservername, podservertype, is_primary=false)
-			@datacenter = datacenter
+		def initialize(db, dcname, podname, podapp, podservername, podservertype, is_primary=false)
+			puts "DeployPodserver: dcname=#{dcname}, podname=#{podname}, podapp=#{podapp}, podservername=#{podservername}, podservertype=#{podservertype}"
+			@datacenter = dcname
 			@podname = podname
 			@podapp = podapp
 			@podservername = podservername
