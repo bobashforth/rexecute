@@ -102,9 +102,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
-						db.dbpodservers = this_server
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					this_servertype = 'be'
@@ -114,10 +113,9 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						puts "DeployDatacenter:Initialize, dcname=#{dcname}, p=#{p}, app=#{app}, this_servername=#{this_servername}, thie_servertype=#{this_servertype}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -139,8 +137,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					this_servertype = 'fe'
@@ -151,8 +149,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -174,8 +172,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -197,8 +195,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -220,8 +218,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -243,8 +241,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -266,8 +264,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -289,8 +287,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -312,8 +310,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -335,8 +333,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					this_servertype = 'be'
@@ -347,8 +345,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -370,8 +368,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					this_servertype = 'fe'
@@ -382,8 +380,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -405,8 +403,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -428,8 +426,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -451,9 +449,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
-						db.dbpodservers = this_server
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -475,8 +472,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -498,8 +495,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -521,8 +518,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -544,8 +541,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -569,8 +566,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					this_servertype = 'be'
@@ -581,8 +578,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 
 						# Pods cs and sj06 are "mini-pods"
 						if "#{p}" == 'cs' or "#{p}" == 'sj06'
@@ -611,8 +608,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					this_servertype = 'fe'
@@ -623,8 +620,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -646,8 +643,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -669,8 +666,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -692,8 +689,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -715,8 +712,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -738,8 +735,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -761,8 +758,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -784,8 +781,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -808,8 +805,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					this_servertype = 'be'
@@ -820,8 +817,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -843,8 +840,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					this_servertype = 'fe'
@@ -855,8 +852,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -878,8 +875,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -901,8 +898,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -924,8 +921,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -947,8 +944,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -970,8 +967,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -993,8 +990,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -1016,8 +1013,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
 						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						db.dbpodservers["#{this_servername}"] = this_server
 						this_serverhash["#{this_servername}"] = this_server
-						db.dbpodservers = this_server
 					end
 
 					thispod.podservers = this_serverhash
@@ -1034,7 +1031,6 @@ module DeployData
 		attr_accessor :podservers
 
 		def initialize(db, dcname, podname, app)
-			puts "DeployPod: dcname=#{dcname}, podname=#{podname}, app=#{app}"
 			@dcname = dcname
 			@podname = podname
 			@podapp = app
@@ -1053,16 +1049,12 @@ module DeployData
 		attr_accessor :is_primary
 
 		def initialize(db, dcname, podname, podapp, podservername, podservertype, is_primary=false)
-			puts "DeployPodserver: dcname=#{dcname}, podname=#{podname}, podapp=#{podapp}, podservername=#{podservername}, podservertype=#{podservertype}"
 			@datacenter = dcname
 			@podname = podname
 			@podapp = podapp
 			@podservername = podservername
 			@podservertype = podservertype
 			@is_primary = is_primary
-			puts "db.podservers:"
-			pp db.podservers
-			db.dbpodservers["#{podservername}"] = self
 		end
 	end
 end
