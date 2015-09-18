@@ -52,14 +52,14 @@ module DeployData
 			return thispod
 		end
 
-
-
 		def get_serverlist(podname, servertype, needs_primary=false)
 			pod = @dbpods["#{podname}"]
 			serverhash = pod.podservers
 			serverlist = Array.new
 			serverhash.each do |k,v|
-				if v.podservertype == servertype
+				if v.podservertype == 'all'
+					serverlist.push(v.podservername)
+				elsif v.podservertype == servertype
 					if needs_primary
 						if v.is_primary
 							serverlist.push(v.podservername)
@@ -86,7 +86,7 @@ module DeployData
 
 			when 'ab'
 
-				app = 'mlm'
+				app = 'MLM'
 				mlm_podnames = ['ab01', 'ab02', 'ab03', 'ab04', 'ab05', 'ab06', 'ab07', 'ab08', 'ab09', 'ab10',
 												'ab11', 'ab12', 'ab13', 'aba', 'abb', 'abc', 'abd', 'abj', 'abk', 'abm', 'abq']
 				mlm_podnames.each do |p|
@@ -291,7 +291,7 @@ module DeployData
 				end
 
 			when 'lon'
-				app = 'mlm'
+				app = 'MLM'
 				mlm_podnames = ['e', 'lon02', 'lon03', 'lon04']
 				mlm_podnames.each do |p|
 					thispod = DeployPod.new(db, dcname, p, app)
@@ -496,7 +496,7 @@ module DeployData
 
 			when 'sj'
 
-				app = 'mlm'
+				app = 'MLM'
 				mlm_podnames = ['cs', 'sj01', 'sj02', 'sj03', 'sj04', 'sj05', 'sj06', 'sj07', 'sj08', 'sj09', 'sj10',
 												'sj11', 'sj12', 'sj13', 'abf', 'abg', 'abh', 'abi', 'abl', 'abn', 'abo', 'abp']
 				mlm_podnames.each do |p|
@@ -709,7 +709,7 @@ module DeployData
 
 			when 'sn'
 
-				app = 'mlm'
+				app = 'MLM'
 				mlm_podnames = ['sn01']
 				mlm_podnames.each do |p|
 					thispod = DeployPod.new(db, dcname, p, app)
