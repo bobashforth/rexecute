@@ -57,7 +57,7 @@ module DeployData
 			serverhash = pod.podservers
 			serverlist = Array.new
 			serverhash.each do |k,v|
-				if v.podservertype == 'all'
+				if servertype == 'all'
 					serverlist.push(v.podservername)
 				elsif v.podservertype == servertype
 					if needs_primary
