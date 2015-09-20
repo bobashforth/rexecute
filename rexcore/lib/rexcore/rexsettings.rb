@@ -6,5 +6,5 @@ module RexSettings
 	CONTROLLERSID = "RexController"
 	REXSERVERID = "RexServer"
 	MANROOT = "/etc/rex/flows"
-	FLOWDATADIR="/etc/rex/flowdata"
+	FLOWDATADIR="/home/deployer"
 end
