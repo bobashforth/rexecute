@@ -19,6 +19,8 @@ module RexClient
 
       @sessionid = sessionid
       port = RexSettings::SERVERPORT
+      system("sudo mkdir -p /var/log/rex/rexclient.log")
+      system("sudo chown deployer.marketo /var/log/rex/rexclient.log")
       @logger = Logger.new('/var/log/rex/rexclient.log')
       @logger.sev_threshold = Logger::INFO
       @logger.level = Logger::INFO
