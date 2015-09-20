@@ -122,7 +122,7 @@ module DeployData
 				rca_podnames = ['rca01', 'rca02', 'rca03', 'rca04', 'rca05', 'rca06']
 				rca_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'etl'
@@ -326,7 +326,7 @@ module DeployData
 				rca_podnames = ['rca01', 'rca02']
 				rca_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'etl'
@@ -539,7 +539,7 @@ module DeployData
 				rca_podnames = ['rca01', 'rca02', 'rca03', 'rca04', 'rca05', 'rca06', 'rca07', 'rca08']
 				rca_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'etl'
@@ -744,7 +744,7 @@ module DeployData
 				rca_podnames = ['rca01']
 				rca_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'etl'
