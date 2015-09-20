@@ -116,6 +116,7 @@ module DeployData
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
+
 				end
 
 				app = 'RCA'
@@ -132,7 +133,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -144,7 +145,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -154,7 +155,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -164,7 +165,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -174,7 +175,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -194,7 +195,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -204,7 +205,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -214,7 +215,7 @@ module DeployData
 				sandbox_podnames = ['track0']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -224,7 +225,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -234,7 +235,7 @@ module DeployData
 				sandbox_podnames = ['shorturl']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -244,7 +245,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -254,7 +255,7 @@ module DeployData
 				sandbox_podnames = ['mas0']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -264,7 +265,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -274,7 +275,7 @@ module DeployData
 				sandbox_podnames = ['mta']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -284,7 +285,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -336,7 +337,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, true)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -348,7 +349,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -358,7 +359,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}-#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -368,7 +369,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -378,7 +379,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}-#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -388,7 +389,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -398,7 +399,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}-#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -408,7 +409,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -418,7 +419,7 @@ module DeployData
 				sandbox_podnames = ['track0']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -428,7 +429,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -438,7 +439,7 @@ module DeployData
 				sandbox_podnames = ['mas']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}-#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -448,7 +449,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -458,7 +459,7 @@ module DeployData
 				sandbox_podnames = ['mas']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}-#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -468,7 +469,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -478,7 +479,7 @@ module DeployData
 				sandbox_podnames = ['mta']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}-#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -488,7 +489,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -549,7 +550,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, true)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -561,7 +562,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -571,7 +572,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -581,7 +582,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -591,7 +592,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -601,7 +602,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -611,7 +612,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -621,7 +622,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -631,7 +632,7 @@ module DeployData
 				sandbox_podnames = ['track0']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -641,7 +642,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -651,7 +652,7 @@ module DeployData
 				sandbox_podnames = ['shorturl']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -661,7 +662,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -671,7 +672,7 @@ module DeployData
 				sandbox_podnames = ['mas0']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -681,7 +682,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -691,7 +692,7 @@ module DeployData
 				sandbox_podnames = ['mta']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -701,7 +702,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -754,7 +755,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype, true)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, true)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -766,7 +767,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -776,7 +777,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -786,7 +787,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -796,7 +797,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -806,7 +807,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -816,7 +817,7 @@ module DeployData
 				sandbox_podnames = ['smx']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -826,7 +827,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -836,7 +837,7 @@ module DeployData
 				sandbox_podnames = ['track0']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -846,7 +847,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -856,7 +857,7 @@ module DeployData
 				sandbox_podnames = ['shorturl']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -866,7 +867,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -876,7 +877,7 @@ module DeployData
 				sandbox_podnames = ['mas0']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -886,7 +887,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -896,7 +897,7 @@ module DeployData
 				sandbox_podnames = ['mta']
 				sandbox_podnames.each do |p|
 					podname = "#{dcname}#{p}"
-					thispod = DeployPod.new(db, dcname, p, app)
+					thispod = DeployPod.new(db, dcname, podname, app)
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
@@ -906,7 +907,7 @@ module DeployData
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
 						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, p, app, this_servername, this_servertype)
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
