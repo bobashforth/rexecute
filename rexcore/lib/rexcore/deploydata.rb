@@ -91,7 +91,7 @@ module DeployData
 												'ab11', 'ab12', 'ab13', 'aba', 'abb', 'abc', 'abd', 'abj', 'abk', 'abm', 'abq']
 				mlm_podnames.each do |p|
 					thispod = DeployPod.new(db, dcname, p, app)
-					@dcpods["#{podname}"] = thispod
+					@dcpods["#{p}"] = thispod
 
 					this_servertype = 'web'
 					this_serverroot = "#{p}#{this_servertype}"
@@ -295,7 +295,7 @@ module DeployData
 				mlm_podnames = ['e', 'lon02', 'lon03', 'lon04']
 				mlm_podnames.each do |p|
 					thispod = DeployPod.new(db, dcname, p, app)
-					@dcpods["#{podname}"] = thispod
+					@dcpods["#{p}"] = thispod
 
 					this_servertype = 'web'
 					this_serverroot = "#{p}#{this_servertype}"
@@ -501,7 +501,7 @@ module DeployData
 												'sj11', 'sj12', 'sj13', 'abf', 'abg', 'abh', 'abi', 'abl', 'abn', 'abo', 'abp']
 				mlm_podnames.each do |p|
 					thispod = DeployPod.new(db, dcname, p, app)
-					@dcpods["#{podname}"] = thispod
+					@dcpods["#{p}"] = thispod
 
 					this_servertype = 'web'
 					this_serverroot = "#{p}#{this_servertype}"
@@ -713,7 +713,7 @@ module DeployData
 				mlm_podnames = ['sn01']
 				mlm_podnames.each do |p|
 					thispod = DeployPod.new(db, dcname, p, app)
-					@dcpods["#{podname}"] = thispod
+					@dcpods["#{p}"] = thispod
 
 					this_servertype = 'web'
 					this_serverroot = "#{p}#{this_servertype}"
