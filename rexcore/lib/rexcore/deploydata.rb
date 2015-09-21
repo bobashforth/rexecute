@@ -40,10 +40,9 @@ module DeployData
 			return podlist
 		end
 
-		def find_pod(dcname, podname)
+		def find_pod(podname)
 			thispod = nil
-			dc = self.dbdatacenters["#{dcname}"]
-			dc.dcpods.each do |k,v|
+			db.dbpods.each do |k,v|
 				if "#{k}" == "#{podname}"
 					thispod = v
 					break
