@@ -129,11 +129,13 @@ module DeployData
 					this_serverroot = "#{p}#{this_servertype}"
 
 					servicegroup = ['1', '2']
-					is_primary_values = [true, false]
+					is_primary = false
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						serverindex = i.to_i
-						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[serverindex])
+						if "#{i}" == '1'
+							is_primary - true
+						end
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -334,11 +336,13 @@ module DeployData
 					this_serverroot = "#{p}#{this_servertype}"
 
 					servicegroup = ['1', '2']
-					is_primary_values = [true, false]
+					is_primary = false
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						serverindex = i.to_i
-						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[serverindex])
+						if "#{i}" == '1'
+							is_primary - true
+						end
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -548,11 +552,13 @@ module DeployData
 					this_serverroot = "#{p}#{this_servertype}"
 
 					servicegroup = ['1', '2']
-					is_primary_values = [true, false]
+					is_primary = false
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						serverindex = i.to_i
-						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[serverindex])
+						if "#{i}" == '1'
+							is_primary - true
+						end
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -754,11 +760,13 @@ module DeployData
 					this_serverroot = "#{p}#{this_servertype}"
 
 					servicegroup = ['1', '2']
-					is_primary_values = [true, false]
+					is_primary = false
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						serverindex = i.to_i
-						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[serverindex])
+						if "#{i}" == '1'
+							is_primary - true
+						end
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary)
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
