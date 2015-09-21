@@ -134,6 +134,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						if "#{i}" == '1'
 							is_primary = true
+						else
+							is_primary = false
 						end
 						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary)
 						db.dbpodservers["#{this_servername}"] = this_server
@@ -341,6 +343,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						if "#{i}" == '1'
 							is_primary = true
+						else
+							is_primary = false
 						end
 						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary)
 						db.dbpodservers["#{this_servername}"] = this_server
@@ -557,6 +561,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						if "#{i}" == '1'
 							is_primary = true
+						else
+							is_primary = false
 						end
 						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary)
 						db.dbpodservers["#{this_servername}"] = this_server
@@ -765,6 +771,8 @@ module DeployData
 						this_servername = "#{this_serverroot}#{i}"
 						if "#{i}" == '1'
 							is_primary = true
+						else
+							is_primary = false
 						end
 						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary)
 						db.dbpodservers["#{this_servername}"] = this_server
