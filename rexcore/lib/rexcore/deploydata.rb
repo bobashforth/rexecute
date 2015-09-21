@@ -132,8 +132,8 @@ module DeployData
 					is_primary_values = [true, false]
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[i])
+						this_serverindex = i.to_i
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[serverindex])
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -337,8 +337,8 @@ module DeployData
 					is_primary_values = [true, false]
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[i])
+						this_serverindex = i.to_i
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[serverindex])
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -551,8 +551,8 @@ module DeployData
 					is_primary_values = [true, false]
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[i])
+						this_serverindex = i.to_i
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[serverindex])
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
@@ -757,8 +757,8 @@ module DeployData
 					is_primary_values = [true, false]
 					servicegroup.each do |i|
 						this_servername = "#{this_serverroot}#{i}"
-						this_serverindex = "#{i}"
-						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[i])
+						this_serverindex = i.to_i
+						this_server = DeployPodserver.new(db, dcname, podname, app, this_servername, this_servertype, is_primary_values[serverindex])
 						db.dbpodservers["#{this_servername}"] = this_server
 						thispod.podservers["#{this_servername}"] = this_server
 					end
