@@ -126,7 +126,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'etl'
-					this_serverroot = "#{p}#{this_servertype}"
+					this_serverroot = "#{podname}#{this_servertype}"
 
 					servicegroup = ['1', '2']
 					is_primary = false
@@ -143,7 +143,7 @@ module DeployData
 					end
 
 					this_servertype = 'fe'
-					this_serverroot = "#{p}#{this_servertype}"
+					this_serverroot = "#{podname}#{this_servertype}"
 							
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -163,7 +163,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -183,7 +183,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -203,7 +203,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -223,7 +223,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2', '3', '4']
 					servicegroup.each do |i|
@@ -243,7 +243,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -263,7 +263,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -283,7 +283,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11']
 					servicegroup.each do |i|
@@ -335,7 +335,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'etl'
-					this_serverroot = "#{p}#{this_servertype}"
+					this_serverroot = "#{podname}#{this_servertype}"
 
 					servicegroup = ['1', '2']
 					is_primary = false
@@ -352,7 +352,7 @@ module DeployData
 					end
 
 					this_servertype = 'fe'
-					this_serverroot = "#{p}#{this_servertype}"
+					this_serverroot = "#{podname}#{this_servertype}"
 							
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -372,7 +372,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -392,7 +392,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -412,7 +412,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -432,7 +432,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -452,7 +452,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -472,7 +472,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -492,7 +492,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -553,7 +553,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'etl'
-					this_serverroot = "#{p}#{this_servertype}"
+					this_serverroot = "#{podname}#{this_servertype}"
 
 					servicegroup = ['1', '2']
 					is_primary = false
@@ -570,7 +570,7 @@ module DeployData
 					end
 
 					this_servertype = 'fe'
-					this_serverroot = "#{p}#{this_servertype}"
+					this_serverroot = "#{podname}#{this_servertype}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -590,7 +590,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -610,7 +610,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -630,7 +630,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -650,7 +650,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -670,7 +670,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -690,7 +690,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -710,7 +710,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 					servicegroup.each do |i|
@@ -763,7 +763,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'etl'
-					this_serverroot = "#{p}#{this_servertype}"
+					this_serverroot = "#{podname}#{this_servertype}"
 
 					servicegroup = ['1', '2']
 					is_primary = false
@@ -780,7 +780,7 @@ module DeployData
 					end
 
 					this_servertype = 'fe'
-					this_serverroot = "#{p}#{this_servertype}"
+					this_serverroot = "#{podname}#{this_servertype}"
 							
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -800,7 +800,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -820,7 +820,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -840,7 +840,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -860,7 +860,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -880,7 +880,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -900,7 +900,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['1', '2']
 					servicegroup.each do |i|
@@ -920,7 +920,7 @@ module DeployData
 					@dcpods["#{podname}"] = thispod
 
 					this_servertype = 'app' # Doesn't affect the root name
-					this_serverroot = "#{p}"
+					this_serverroot = "#{podname}"
 
 					servicegroup = ['01', '02']
 					servicegroup.each do |i|
