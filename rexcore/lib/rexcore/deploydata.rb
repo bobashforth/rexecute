@@ -119,7 +119,7 @@ module DeployData
 				end
 
 				app = 'RCA'
-				rca_podnames = ['rca01', 'rca02', 'rca03', 'rca04', 'rca05', 'rca06']
+				rca_podnames = ['rca01', 'rca02', 'rca03', 'rca04', 'rca05', 'rca06', 'rca07']
 				rca_podnames.each do |p|
 					podname = "#{dcname}#{p}"
 					thispod = DeployPod.new(db, dcname, podname, app)
